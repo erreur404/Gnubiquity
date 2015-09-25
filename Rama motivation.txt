@@ -1,0 +1,5 @@
+Mes objectifs pour l'app RS en fi4 :
+
+- Développer mes 'coding skills'
+- Savoir créer et faire de la maintenance de projet informatique, notamment de la gestion de version
+- Connaître les 'tricks' de bonne conception de projet informatique.
