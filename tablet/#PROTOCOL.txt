@@ -1,0 +1,16 @@
+La tablette enverra un objet .json ou une chaîne formattée en json au serveur. Pour des raisons de compatibilité, les valeurs seront exprimées en pourcentages.
+
+			valeurs        nao       description
+"avance" : [-100%, 100] [-1.0, 1.0]  indique que Nao doit avancer à % de vitesse motionProxy.moveToward(frequency, X=+, Y=0)
+"tourne" : [-50%, 50%]  [-1.0, 1.0]  Nao tourne en avançant à gauche ou à droite motionProxy.moveToward(theta)
+"rotationTeteX" : [-50%, 50%]
+"rotationTeteY" : [-50%, 50%]
+
+ex :
+
+{
+	"avance":50;
+	"tourne":-15;
+	"rotationTeteX":5;
+	"rotationTeteY":10;
+}
