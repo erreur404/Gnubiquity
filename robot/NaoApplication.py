@@ -5,9 +5,38 @@ import math
 
 
 # IP Jerome : '193.48.125.68' port: 6030
-from FeaturesComplete import *
+#from FeaturesComplete import *
+from FeatureGNUBIQUITY.Motion import *
+from FeatureGNUBIQUITY.MoveArm import *
+from FeatureGNUBIQUITY.TakePictures import *
 from Robot import *
 from Tkinter import *
+
+class Features:
+
+    def __init__(self, name):
+        self.name = name
+    
+    def runOnRobot(self, Nao, forward, backward, right, left):
+        self.run(Nao.NaoIP, forward, backward, right, left)
+        
+              
+class initRobot(Features):
+    'Common base class for initRobot feature'
+    'The goal of this feature is to set a posture for the robot'
+    'The posture chosen is Stand'
+    
+    def __init__(self):
+        self.name = "Init"
+       
+    def run(self, robotIP):
+        try:
+            postureProxy = ALProxy("ALRobotPosture", robotIP, 9559)
+        except Exception, e:
+            print "Could not create proxy to ALRobotPosture"
+            print "Error was: ", e
+               
+        postureProxy.goToPosture("Stand", 0.8)
 
 class NaoApplication:
 

@@ -179,7 +179,7 @@ class Move(Features):
 
         navigationProxy.moveTo(X, Y, Theta)
     
-class TakePicture(Features):
+class TakePicture(Features): #We should work on this class to create another one with the video
     
     def __init__(self):
         self.name = "TakePicture"
@@ -225,7 +225,7 @@ class TakePicture(Features):
         
         im.show()
         
-class Mime(Features):
+class Mime(Features): #THIS CLASS SEEMS INAPROPRIATE FOR GNUBIQUITY
     
     '''
     def __init__(self, LShoulderPitch, LShoulderRoll, LElbowYaw, LElbowRoll, RShoulderPitch, RShoulderRoll, RElbowYaw, RElbowRoll):
@@ -274,7 +274,7 @@ class Mime(Features):
         
         time.sleep(5.0)
         
-class Kick(Features):
+class Kick(Features): #THIS CLASS SEEMS INAPROPRIATE FOR GNUBIQUITY
      
     def __init__(self):
         self.name = "Kick"
