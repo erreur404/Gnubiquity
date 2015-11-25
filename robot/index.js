@@ -13,6 +13,7 @@ var execute = function () {
 			'data': sendingData,
 			'dataType': "json",
 			'method': "POST",
+			'Access-Control-Allow-Origin': *,
 			'error': function() {
 				console.log(loading);
 			},
@@ -22,4 +23,11 @@ var execute = function () {
 			}
 		}
 	);
+}
+
+var exec_cute = function () {
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', sendingTo, true);
+	xhr.onloadend = function (err) {console.log(err);};
+	xhr.send();
 }

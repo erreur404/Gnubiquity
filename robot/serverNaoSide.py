@@ -57,7 +57,6 @@ class GnubiquityServer(SocketServer.BaseRequestHandler):
         newData["citrouille"] += 1
         newData["melon"] += 1
         self.data = str(newData)
-        self.request.send('HTTP/1.0 200 OK\r\n')
         self.request.sendall(self.data)
 
 #if __name__ == "__main__":
