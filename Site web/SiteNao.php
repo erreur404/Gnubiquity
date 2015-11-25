@@ -5,8 +5,9 @@
         <head>
 		<title>App RS</title>
         <meta content="info">
-        <meta charset="UTF-8">
+        <meta charset="ASCII">
 		<link rel="stylesheet" href="SiteNao.css" />
+		<script src="jquery-1.11.3.min.js" type="text/javascript"></script>
 		</head>
         <body>
             <div id="fond">
@@ -20,7 +21,7 @@
 				<div id="menu">
 					<ul id="lemenu">
 						<?php
-						$encours = array("1", "0", " ",);
+						$encours = array("", "", "");
 
 						if (!isset($_GET["page"])) {
 							$page = 0;
@@ -31,6 +32,7 @@
 
 						echo "<li><a class=\"btn_menu $encours[0]\"href=\"?page=0\">Accueil</a></li>\n";
 						echo "<li><a class=\"btn_menu $encours[1]\"href=\"?page=1\">Connexion</a></li>\n";
+						echo "<li><a class=\"btn_menu $encours[2]\"href=\"?page=2\">Essai</a></li>\n";
 						?> 
 					</ul>
 				</div>
