@@ -1,19 +1,20 @@
 <script>
 
+var sendingData = "";
+var sendingTo = "";
+
 function Say(){
-	var ip=document.getElementById("ip").value;
-	//alert(ip);
-	var message = document.getElementById("message").value;
+	ip=document.getElementById("ip").value;
+	sendingTo="http://"+ip;
+	alert(sendingTo);
+	message = document.getElementById("message").value;
 	//alert(message);
-	message = message.replace(/[ийкл]/g, "e").replace(/[з]/g, "c").replace(/[авд]/g, "a").replace(/[по]/g, "i").replace(/[ыщь]/g, "u").replace(/[фцу]/g, "o");;
-	//alert(message);	
-	send(ip, message);
+	sendingData = message.replace(/[ийкл]/g, "e").replace(/[з]/g, "c").replace(/[авд]/g, "a").replace(/[по]/g, "i").replace(/[ыщь]/g, "u").replace(/[фцу]/g, "o");
+	//alert(sendingData);	
+	execute();
 }
 
-function send(ip, sendingData) {
-	var sendingTo = "http://"+ip;
-
-
+var execute = function () {
 	var loading = $.ajax(
 		{
 			'url': sendingTo,
@@ -30,4 +31,12 @@ function send(ip, sendingData) {
 		}
 	);
 }
+
+var exec_cute = function () {
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', sendingTo, true);
+	xhr.onloadend = function (err) {console.log(err);};
+	xhr.send();
+}
+
 </script>

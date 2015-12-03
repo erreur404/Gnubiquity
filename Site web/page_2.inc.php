@@ -14,7 +14,7 @@ include 'page_2.inc.js';
     <div id="contenu10">
 		<p>
 			<label for="ip"> Ip :</label>
-			<input type="text" name="ip" id="ip" placeholder="127.0.0.1" size="30" requiered/>
+			<input type="text" name="ip" id="ip" placeholder="127.0.0.1" requiered/>
 		</p>
 		<p>
 			<label for="message"> Message :</label>
