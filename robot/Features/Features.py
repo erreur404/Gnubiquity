@@ -17,7 +17,7 @@ class Features:
 
     def __init__(self, name):
         self.name = name
-    
-    def runOnRobot(self, Nao, forward, backward, right, left):
-        self.run(Nao.NaoIP, forward, backward, right, left)
+
+    def runOnRobot(self, Nao, command):
+        self.run(Nao.NaoIP, command)
         

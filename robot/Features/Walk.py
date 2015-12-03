@@ -23,7 +23,7 @@ class Walk(Features):
     def __init__(self):
         self.name = "Walk"
     
-    def run(self, robotIP, forward, backward, right, left):
+    def run(self, robotIP, command):
         try:
             motionProxy = ALProxy("ALMotion", robotIP, 9559)
         except Exception, e:
@@ -74,16 +74,16 @@ class Walk(Features):
         start = time.time()
        
         
-        if forward :
-             navigationProxy.moveTo(.5, 0.0, 0.0)
+        if (command =="fwd") :
+             navigationProxy.moveTo(0.5, 0.0, 0.0)
              motionProxy.waitUntilMoveIsFinished()
-        elif backward :
+        elif (command =="bwd"):
              navigationProxy.moveTo(-0.5, 0.0, 0.0)
              motionProxy.waitUntilMoveIsFinished()
-        elif right :
+        elif (command =="rgt") :
              navigationProxy.moveTo(0.0, 0.0, -1.0)
              motionProxy.waitUntilMoveIsFinished()
-        elif left :
+        elif (command =="lft") :
              navigationProxy.moveTo(0.0, 0.0, 1.0)
              motionProxy.waitUntilMoveIsFinished()
                 

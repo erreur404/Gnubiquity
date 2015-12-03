@@ -1,3 +1,4 @@
+# -*- coding: cp1252 -*-
 import socket
 import json
 import sys
@@ -103,32 +104,50 @@ def main():
     canvas.pack()
     
     def avant(event):
-         forward = True
-         wA.runOnRobot(nao, forward, backward, right ,left)
+         #forward = True
+         command = "fwd"
+         wA.runOnRobot(nao, command)
     def arriere(event):
-        backward = True
-        wA.runOnRobot(nao, forward, backward, right ,left)
+        #backward = True
+        command = "bwd"
+        wA.runOnRobot(nao, command)
     def gauche(event):
-        left = True
-        wA.runOnRobot(nao, forward, backward, right ,left)
+        #left = True
+        command = "lft"
+        wA.runOnRobot(nao, command)
     def droite(event):
-        right = True
-        wA.runOnRobot(nao, forward, backward, right ,left)
+        #right = True
+        command = "rgt"
+        wA.runOnRobot(nao, command)
     def stop(event):
-        forward = False
-        backward = False
-        right = False
-        left =False
-    
+        cmd ="stp"
+        wA.runOnRobot(nao, command)
+        
+    def RArmUP(event):
+        mM.runOnRobot(nao, "RArmUP")
+        #mM.runOnRobot(nao)
+        print("fonction RAmUP appelée")
+        
     # Quelques exemples de touches
     root.bind("<Up>", avant) # Fleche haut
     root.bind("<Down>",arriere) # Bas
     root.bind("<Left>", gauche) # Gauche
     root.bind("<Right>", droite) # Droite
-    root.bind("<space>", stop) # barre despace
+    #root.bind("<space>", RArmUP) # barre despace
     while(True):     
         root.mainloop()
 
+
+
+    #ESSAI MIME : LE ROBOT LEVE LA MAIN
+    def RArmUP(event):
+        mM.runOnRobot(nao, "RArmUP")
+        mM.runOnRobot(nao)
+        print("fonction RAmUP appelée")
+        
+    #root.bind("<space>", RArmUp)
+    while(True):
+        root.mainloop()
     
     """
     'Connection to ComManager
