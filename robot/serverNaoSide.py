@@ -1,4 +1,6 @@
 import SocketServer
+import streamingServer
+from robotDebug import *
 
 class GnubiquityServer(SocketServer.BaseRequestHandler):
     """
@@ -59,7 +61,6 @@ class GnubiquityServer(SocketServer.BaseRequestHandler):
         self.data = str(newData)
         self.request.sendall(self.data)
 
-#if __name__ == "__main__":
 def runServer():
     HOST, PORT = "localhost", 9999
 
@@ -70,4 +71,8 @@ def runServer():
     # interrupt the program with Ctrl-C
     server.serve_forever()
 
-runServer()
+fakeNao = Robot()
+streamServer = streamingServer.StreamingServer(fakeNao)
+streamServer.run()
+
+#runServer()

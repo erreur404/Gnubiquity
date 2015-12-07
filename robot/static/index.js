@@ -13,7 +13,6 @@ var execute = function () {
 			'data': sendingData,
 			'dataType': "json",
 			'method': "POST",
-			'Access-Control-Allow-Origin': *,
 			'error': function() {
 				console.log(loading);
 			},
