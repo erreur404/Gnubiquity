@@ -6,8 +6,8 @@ class Robot(object):
     files 1.jpg, 2.jpg and 3.jpg at a rate of one frame per second."""
 
     def __init__(self):
-        self.frames = [open('_robotDebug/'+str(f) + '.jpg', 'rb').read() for f in range(1,10)]
+        self.frames = [open('_robotDebugFps/'+str(f) + '.bmp', 'rb').read() for f in range(1,101)]
+        self.fps = 15
 
     def get_frame(self):
-        #time.sleep(0.5)
-        return self.frames[int(time()) % len(self.frames)]
+        return self.frames[int(time()*self.fps) % len(self.frames)]
