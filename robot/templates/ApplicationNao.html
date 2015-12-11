@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	<title>Gnubiquity Nao</title>
+		<meta charset=utf8>
+		<link rel="stylesheet" href="{{ url_for('static', filename='DesignApp.css') }}" />
+		
+	<!--
+	/////////////////////////////////////////////////////////////
+	-->
+	<!--
+		<script>
+			function draw(x,y){
+			var canvas = document.getElementById('canvas');
+			var ctx = canvas.getContext('2d');						ctx.save();
+			ctx.clearRect(0,0,550,400);
+			ctx.fillStyle = "rgba(0,200,0,1)";
+			ctx.fillRect (x, y, 50, 50);
+			ctx.restore(); 
+			x += 1;
+			var loopTimer = setTimeout('draw('+x+','+y+')',30);
+			}
+		</script>
+	-->
+	</head>
+
+	<body>
+			
+		<div id="Upper">
+			<div id="Upper1">
+				<center>
+					<img id="ImgLogo" src="{{ url_for('static', filename='LogoApp2.png') }}">
+					<br/>
+				</center>
+			</div>
+			
+			<!--
+			<div id="Button">
+				<center>
+				<img id="myImage" onclick="changeImage()" src="{{ url_for('static', filename='Button1Click.png') }}" width="80" height="40">
+				</center>
+				<script>
+				function changeImage() {
+					var image = document.getElementById('myImage');
+					if (image.src.match("Button2Click")) {
+						image.src = "Button1click.png";
+					} else {
+						image.src = "Button2Click.png";
+					}
+				}
+				
+				</script>
+			</div>
+			-->
+		</div>
+		<div id="EnsembleTot">
+			<div id="Connexion"> 
+				<ul>
+					<a href="{{ url_for('about') }}"><li id="AboutUs"> About us </li></a><!--
+					--><a href="/"><li> Reload </li></a><!--
+					--><a href="http://www.w3schools.com"><li  id="Deconnexion"> Disconnect </li></a>
+				</ul> 
+			</div>
+			<div id="Main">
+				<div id="CadreCentral">
+					Here, the video connexion of Nao :
+					
+					<br/><br/><br/>
+					<center>
+					
+					<div id = "output">	
+						<img src="{{ url_for('video_feed') }}" width="50%">
+					</div>
+					
+					<div id="Buttons">
+						<img class="Button" id="joystickG" src="{{ url_for('static', filename='Button.png') }}">
+						<img class="ButtonB" src="{{ url_for('static', filename='Assis.png') }}">
+						<img class="ButtonB" src="{{ url_for('static', filename='Debout.png') }}">
+						<img class="ButtonB" src="{{ url_for('static', filename='SigneMain.png') }}">
+						<img class="ButtonB" id="Micro" src="{{ url_for('static', filename='Micro.png') }}">
+						<img class="Button" id="joystickD" src="{{ url_for('static', filename='Button.png') }}">
+					</div>
+				</div>
+				<div id="CadreCentralbis">
+					<div id="form">
+						<form action="demo_form.asp">
+							Write here what you want to say : <input id="text" type="text" name="Say"><br>
+						<br/>
+						<input id="submit" type="submit" value="Submit"><br/><br/>
+						</form>
+					</div>
+					<p id="CoordonneesG"></p>
+					<p id="CoordonneesD"></p>
+				</div>
+				<!--
+				<button onclick="draw(0,0)">Draw</button>
+				<canvas id="canvas" width="550" height="400"></canvas>
+				-->
+	
+			</div>
+		</div>
+		
+		<div id="Lower">
+		
+		</div>
+		
+		<script type="text/javascript">
+	
+			/*
+			Ici le script du Joystick Gauche
+			*/
+			
+			var joyG = document.getElementById("joystickG");
+			var joyGPressed = false;
+			
+			function activateJoyG() {
+				joyGPressed = true;
+			}
+			
+			function inhibitJoyG() {
+				joyGPressed = false;
+			}
+			
+			function onMouseMove_page(event){
+				var x = event.clientX - LeftG + window.scrollX - joystickG.width/2;
+				var y = event.clientY + window.scrollY -TopG - joystickG.height/2 - 12;
+				var coor = "Coordinates Left: (" + x + "," + y + ")";
+				document.getElementById("CoordonneesG").innerHTML = coor;
+				console.log('Vous vous êtes déplacés au point de coordonnés: ' + x + ', ' + y );
+			}
+			
+			joyG.onmousedown = activateJoyG;
+			joyG.onmousemove = onMouseMove_page;
+			joyG.onmouseleave = inhibitJoyG;
+			joyG.onmouseup = inhibitJoyG;
+			
+			/*
+			Ici le script du Joystick Droit
+			*/
+			
+			var joyD = document.getElementById("joystickD");
+			var joyDPressed = false;
+			
+			function activateJoyD() {
+				joyDPressed = true;
+			}
+			
+			function inhibitJoyD() {
+				joyDPressed = false;
+			}
+			
+			function onMouseMove_page2(event){
+				var x2 = event.clientX - LeftD + window.scrollX - joystickG.width/2;
+				var y2 = event.clientY - TopD - joystickD.height/2 + window.scrollY - 12;
+				var coor2 = "Coordinates Right: (" + x2 + "," + y2 + ")";
+				document.getElementById("CoordonneesD").innerHTML = coor2;
+				console.log('Vous vous êtes déplacés au point de coordonnés: ' + x2 + ' , ' + y2 );
+			}
+			
+			joyD.onmousedown = activateJoyD;
+			joyD.onmousemove = onMouseMove_page2;
+			joyD.onmouseleave = inhibitJoyD;
+			joyD.onmouseup = inhibitJoyD;
+			
+			/*
+			Position des Joystick :
+			*/
+			
+			function FindPosX(joyD){
+				return joyD.offsetLeft;
+			} 
+			function FindPosY(joyD){
+				return joyD.offsetTop;
+			} 
+			LeftD=joyD.offsetLeft;
+			TopD=joyD.offsetTop;
+			
+			////////////////////////////////////////////////
+			
+			function FindPosX(joyG){
+				return joyG.offsetLeft;
+			} 
+			function FindPosY(joyG){
+				return joyG.offsetTop;
+			} 
+			LeftG=joyG.offsetLeft;
+			TopG=joyG.offsetTop;
+			
+		</script>
+	
+	</body>
+
+</html>

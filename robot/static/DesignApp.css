@@ -1,0 +1,227 @@
+/*Fichier CSS*/
+body{
+	background-image:url('Wall1.png');
+	padding:10px;
+	min-width:700px;
+	cursor:url(images/Joystick.cur),auto;
+}
+#ImgLogo{
+	max-width: 200px;
+	height: auto;
+	color:blue;
+}
+#Upper1{
+	background-image:url('Metal.png');
+	background-size:80%;
+	height:100px;
+	margin-left:32%;
+	margin-right:32%;
+	border-bottom-left-radius:100%;
+	border-bottom-right-radius:100%;
+	max-width:300px;
+	margin-top:-20px;
+	box-shadow: 1px 3px 8px 2px black;
+	-webkit-transition: box-shadow 1s;
+}
+#Upper1:hover{
+	box-shadow: 1px 3px 6px 4px black;
+	-webkit-transition: box-shadow 1s;
+}
+
+#Button{
+	width:80px;
+	height:40px;
+	border-radius:6px;
+	position:absolute;
+	top:0px;
+	-webkit-transition: box-shadow 1s;
+}
+/*
+#Button:hover{
+	box-shadow: -1px 2px 5px 1px black;
+	border-style:solid;
+	border-width:1px;
+	-webkit-transition: box-shadow 1s;
+}
+*/
+#ImgLogo{
+	opacity:1;
+	margin-top:0px;
+}
+#Connexion{
+	padding-left:5px;
+	padding-right:5px;
+	padding-top:2px;
+}
+#Main{
+	padding-left:5px;
+	padding-right:5px;
+	padding-bottom:5px;
+}
+ul{
+	list-style:none;
+	background:linear-gradient(black,#484848);
+	border-style:solid;
+	border-width:1px;
+	border-top-left-radius:8px;
+	border-top-right-radius:8px;
+	border-top-color:#66CCFF;
+	border-left-color:#66CCFF;
+	border-right-color:#66CCFF;
+	box-shadow: -1px 2px 5px 1px black;
+	text-align:center;
+	padding:2px;
+}
+/*
+#EnsembleTot{
+	background-image:url('Metal.png');
+	background-size:200px;
+	margin-top:50px;
+	box-shadow: -1px 2px 5px 1px black;
+	border-radius:8px;
+}
+*/
+li{
+	display:inline-block;
+	border-top-left-radius:0px;
+	border-top-right-radius:0px;
+	padding-left:10%;
+	padding-top:2px;
+	padding-bottom:2px;
+	padding-right:10%;
+	border-radius:8px;
+	color:#66CCFF;
+	box-shadow: none;
+	height:30px;
+}
+li:hover{
+	border-top-left-radius:0px;
+	border-top-right-radius:0px;
+	box-shadow: 0px 2px 3px 2px black;
+}
+#CadreCentral{
+	border-style:solid;
+	border-width:1px;
+	border-bottom-width:1px;
+	border-bottom-color:black;
+	border-left-color:#66CCFF;
+	border-right-color:#66CCFF;
+	border-top-color:black;
+	background-image:linear-gradient(black,#484848,#484848,black);
+	color:#66CCFF;
+	text-align:center;
+	box-shadow: -1px 2px 5px 1px black;
+}
+#CadreCentralbis{
+	border-style:solid;
+	border-width:1px;
+	border-bottom-left-radius:8px;
+	border-bottom-right-radius:8px;
+	border-bottom-color:#66CCFF;
+	border-left-color:#66CCFF;
+	border-right-color:#66CCFF;
+	border-top-color:black;
+	padding:0px;
+	height:90px;
+	background-image:linear-gradient(black,#484848,black);
+	color:#66CCFF;
+	text-align:center;
+	box-shadow: -1px 2px 5px 1px black;
+	margin-top:15px;
+}
+#Buttons{
+	background-color:none;
+	text-align:center;
+}
+#Micro{
+	width:5%;
+	height:auto;
+	max-width:45px;
+}
+.Button{
+	margin-bottom:0px;
+	width:70px;
+	height:auto;
+	display:inline-block;
+	padding:1%;
+	padding-left:0px;
+	padding-right:0px;
+	cursor:pointer;
+}
+.ButtonB{
+	margin-bottom:0px;
+	width:8%;
+	max-width:70px;
+	height:auto;
+	display:inline-block;
+	border-radius:100%;
+	border:0px;
+	padding:1%;
+	padding-left:3%;
+	padding-right:3%;
+}
+.ButtonB:hover{
+	background-color:none;
+	height:auto;
+	border-color:#66CCFF;
+	box-shadow: -1px 2px 5px 1px black;
+}
+input{
+	border-style:solid;
+	border-width:1px;
+	border-bottom-left-radius:4px;
+	border-bottom-right-radius:4px;
+	border-top-left-radius:4px;
+	border-top-right-radius:4px;
+	border-bottom-color:black;
+	border-left-color:#66CCFF;
+	border-right-color:#66CCFF;
+	border-top-color:black;
+	background-color: #282828;
+	box-shadow: -1px 2px 5px 1px black;
+	color:#66CCFF;
+	border-radius:20px;
+}
+#text{
+	width:200px;
+	height:20px;
+	color:white;
+	-webkit-transition: width 2s;
+}
+#text:hover{
+	width:400px;
+	-webkit-transition: width 2s;
+}
+#form{
+	margin-left:20px;
+	margin-right:20px;
+	padding-top:10px;
+	border-bottom-left-radius:4px;
+	border-bottom-right-radius:4px;
+	border-top-left-radius:4px;
+	border-top-right-radius:4px;
+	border-bottom-color:none;
+	border-top-color:none;
+	background-color:none;
+}
+#output{
+	height:200px;
+	width:80%;
+	border-style:solid;
+	background-color:black;
+	border-radius:8px;
+	border-width:1px;
+	border-color:black;
+	box-shadow: -1px 2px 5px 1px black;
+}
+canvas{
+	border:#666 1px solid;
+}
+/******************************************************************************
+*/
+
+
+
+
+
+
