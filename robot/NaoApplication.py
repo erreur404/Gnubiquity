@@ -16,6 +16,7 @@ from Features.Move import *
 from Features.TakePicture import *
 from Features.Mime import *
 from Features.Kick import *
+from Features.Arm import *
 
 
 class NaoApplication:
@@ -43,6 +44,7 @@ def main():
     tP = TakePicture()
     mM = Mime(0,0)
     kR = Kick()
+    aR = Arm()
     
     'Adding the features to the list of features of the NaoAppliaction instance'
     na.features.append(iR)
@@ -52,6 +54,7 @@ def main():
     na.features.append(tP)
     na.features.append(mM)
     na.features.append(kR)
+    na.features.append(aR)
     
     "Getting a list of Features name"
     NaoFeaturesList = []
@@ -124,7 +127,7 @@ def main():
         wA.runOnRobot(nao, command)
         
     def RArmUP(event):
-        mM.runOnRobot(nao, "RArmUP")
+        aR.runOnRobot(nao, "stop")
         #mM.runOnRobot(nao)
         print("fonction RAmUP appelée")
         
@@ -133,17 +136,12 @@ def main():
     root.bind("<Down>",arriere) # Bas
     root.bind("<Left>", gauche) # Gauche
     root.bind("<Right>", droite) # Droite
-    #root.bind("<space>", RArmUP) # barre despace
+    root.bind("<space>", RArmUP) # barre despace
     while(True):     
         root.mainloop()
 
 
 
-    #ESSAI MIME : LE ROBOT LEVE LA MAIN
-    def RArmUP(event):
-        mM.runOnRobot(nao, "RArmUP")
-        mM.runOnRobot(nao)
-        print("fonction RAmUP appelée")
         
     #root.bind("<space>", RArmUp)
     while(True):
