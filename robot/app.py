@@ -1,17 +1,17 @@
 ################################
 #    IMPORTS                   #
 ################################
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, Response, request
 import time
 
 # emulated camera
-from robotDebugFps import Robot
+from robotDebug import Robot
 
 
 #*****************************#
 #     CONSTANTS & CONFIG      #
 #*****************************#
-FPS_LIMIT = 30
+FPS_LIMIT = 0.1
 
 
 
@@ -32,16 +32,22 @@ def index():
     """Video streaming home page."""
     return render_template('index.html')
 
+@app.route('/about')
+def about():
+    """Video streaming home page."""
+    return render_template('AboutUs.html')
+
 
 def gen(camera):
     """Video streaming generator function."""
     while True:
         a = time.clock()
-        frame = camera.get_frame()
-        delta = time.clock()-a
+        frame = camera.get_frame() # fetching 1 image from the robot
+        delta = time.clock()-a # time elapsed during request to robot
         delta = (1.0/FPS_LIMIT) - delta # diff between time elapsed and FPS limit period
         if (delta > 0): # delta > 0 => frame acquisition faster than FPS period
             time.sleep(delta)
+        
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
@@ -52,6 +58,11 @@ def video_feed():
     return Response(gen(robot),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
+@app.route('/command', methods=['GET', 'POST'])
+def command():
+    return "received !"
+    #return str(request.body)
+    #return str(request.form)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True, threaded=True)
+    app.run(host='::', port=80, debug=True, threaded=True)
