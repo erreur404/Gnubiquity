@@ -6,6 +6,14 @@ var sendingData = {
 
 var sendingTo = window.location+"/command/"
 
+function Say(){
+	message=document.getElementById("text").value;
+	//alert(message);
+	sendingData = message.replace(/[ийкл]/g, "e").replace(/[з]/g, "c").replace(/[авд]/g, "a").replace(/[по]/g, "i").replace(/[ыщь]/g, "u").replace(/[фцу]/g, "o");
+	//alert(sendingData);	
+	execute();
+}
+
 var execute = function () {
 	var loading = $.ajax(
 		{
