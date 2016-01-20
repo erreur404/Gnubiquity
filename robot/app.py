@@ -11,7 +11,7 @@ from robotDebug import Robot
 #*****************************#
 #     CONSTANTS & CONFIG      #
 #*****************************#
-FPS_LIMIT = 0.1
+FPS_LIMIT = 15
 
 
 
@@ -58,11 +58,18 @@ def video_feed():
     return Response(gen(robot),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
-@app.route('/command', methods=['GET', 'POST'])
+@app.route('/command', methods=['POST'])
 def command():
-    return "received !"
+    #return "received !"
     #return str(request.body)
-    #return str(request.form)
+    print (str(request.form))
+    return 0
+
+@app.route('/say', methods=['POST'])
+def say():
+    #return "received !"
+    #return str(request.body)
+    return str(request.form["Say"])
 
 if __name__ == '__main__':
     app.run(host='::', port=80, debug=True, threaded=True)
