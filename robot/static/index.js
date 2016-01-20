@@ -48,7 +48,7 @@ var exec_cute = function () {
 
 setTimeout(
 	function (e) {
-		createDebugWindow();
+		//createDebugWindow();
 	},
 	3000
 );
