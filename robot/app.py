@@ -36,16 +36,21 @@ def index():
 def about():
     """Video streaming home page."""
     return render_template('AboutUs.html')
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 
 def gen(camera):
     """Video streaming generator function."""
     while True:
         a = time.clock()
-        frame = camera.get_frame()
-        delta = time.clock()-a
+        frame = camera.get_frame() # fetching 1 image from the robot
+        delta = time.clock()-a # time elapsed during request to robot
         delta = (1.0/FPS_LIMIT) - delta # diff between time elapsed and FPS limit period
         if (delta > 0): # delta > 0 => frame acquisition faster than FPS period
             time.sleep(delta)
+        
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 

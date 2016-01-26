@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title>Video Streaming Demonstration</title>
+	
+  </head>
+  <body>
+    <h1>Video Streaming Demonstration</h1>
+    <img src="{{ url_for('video_feed') }}" width="50%">
+	<script>
+		var HMI = {
+			getX:function () {
+				return 0;
+			},
+			getY:function () {
+				return 0.965;
+			},
+			getPosRest:function () {
+				return true;
+			},
+			getPosIdle:function () {
+				return false;
+			},
+			getPosCue:function () {
+				return false;
+			},
+			getMessage:function () {
+				message=document.getElementById("message").value;
+				return message.replace(/[éèêë]/g, "e").replace(/[ç]/g, "c").replace(/[àâä]/g, "a").replace(/[ïì]/g, "i").replace(/[ùûü]/g, "u").replace(/[ôöò]/g, "o");
+			}
+		}
+	
+		function actionButtonClick () {
+			//alert("kikoo");
+			var dataForm = new FormData();
+			dataForm.append("avancer", HMI.getX());
+			dataForm.append("idle", HMI.getPosIdle());
+			dataForm.append("rest", HMI.getPosRest());
+			dataForm.append("tourner", HMI.getY());
+			dataForm.append("message", HMI.getMessage());
+			
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.open("POST", "/command", true);
+			xmlhttp.send(dataForm);
+			//alert("form sent !");
+		};
+	</script>
+	<input type="text" name="message" id="message" placeholder="azerty" />
+	<button onclick="actionButtonClick();">Action !</button>
+  </body>
+</html>
