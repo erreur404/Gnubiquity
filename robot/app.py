@@ -56,6 +56,18 @@ def video_feed():
     return Response(gen(robot),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
+@app.route('/command', methods=['POST'])
+def command():
+    #return "received !"
+    #return str(request.body)
+    print (str(request.form))
+    return "0"
 
+@app.route('/say', methods=['POST'])
+def say():
+    #return "received !"
+    #return str(request.body)
+    return str(request.form["Say"])
+					
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True, threaded=True)
