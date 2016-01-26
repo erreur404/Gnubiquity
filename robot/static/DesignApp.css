@@ -206,7 +206,7 @@ input{
 }
 #output{
 	height:26em;
-	width:41em;
+	width:auto;
 	min-width:41em;
 	border-style:solid;
 	background-color:black;
