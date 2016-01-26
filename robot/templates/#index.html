@@ -1,6 +1,7 @@
 <html>
   <head>
     <title>Video Streaming Demonstration</title>
+	
   </head>
   <body>
     <h1>Video Streaming Demonstration</h1>
@@ -21,6 +22,11 @@
 			},
 			getPosCue:function () {
 				return false;
+			},
+			getMessage:function () {
+				message=document.getElementById("message").value;
+				return message.replace(/[éèêë]/g, "e").replace(/[ç]/g, "c").replace(/[àâä]/g, "a").replace(/[ïì]/g, "i").replace(/[ùûü]/g, "u").replace(/[ôöò]/g, "o");
+				
 			}
 		}
 	
@@ -31,6 +37,7 @@
 			dataForm.append("idle", HMI.getPosIdle());
 			dataForm.append("rest", HMI.getPosRest());
 			dataForm.append("tourner", HMI.getY());
+			dataForm.append("message", HMI.getMessage());
 			
 			var xmlhttp = new XMLHttpRequest();
 			xmlhttp.open("POST", "/command", true);
@@ -38,10 +45,7 @@
 			//alert("form sent !");
 		};
 	</script>
-	<form action="/command" method="POST">
-		<input name="in1" type="text"></input>
-		<input type="submit"></input>
-	</form>
+	<input type="text" name="message" id="message" placeholder="azerty" />
 	<button onclick="actionButtonClick();">Action !</button>
   </body>
 </html>
