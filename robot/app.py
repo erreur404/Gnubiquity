@@ -1,17 +1,17 @@
 ################################
 #    IMPORTS                   #
 ################################
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, Response, request
 import time
 
 # emulated camera
-from robotDebugFps import Robot
+from robotDebug import Robot
 
 
 #*****************************#
 #     CONSTANTS & CONFIG      #
 #*****************************#
-FPS_LIMIT = 30
+FPS_LIMIT = 15
 
 
 
@@ -32,6 +32,10 @@ def index():
     """Video streaming home page."""
     return render_template('index.html')
 
+@app.route('/about')
+def about():
+    """Video streaming home page."""
+    return render_template('AboutUs.html')
 
 def gen(camera):
     """Video streaming generator function."""
