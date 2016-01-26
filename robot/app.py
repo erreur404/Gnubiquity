@@ -63,7 +63,7 @@ def command():
     #return "received !"
     #return str(request.body)
     print (str(request.form))
-    return 0
+    return "0"
 
 @app.route('/say', methods=['POST'])
 def say():
