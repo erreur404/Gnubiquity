@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title>Video Streaming Demonstration</title>
+  </head>
+  <body>
+    <h1>Video Streaming Demonstration</h1>
+    <img src="{{ url_for('video_feed') }}" width="50%">
+	<script>
+		var HMI = {
+			getX:function () {
+				return 0;
+			},
+			getY:function () {
+				return 0.965;
+			},
+			getPosRest:function () {
+				return true;
+			},
+			getPosIdle:function () {
+				return false;
+			},
+			getPosCue:function () {
+				return false;
+			}
+		}
+	
+		function actionButtonClick () {
+			//alert("kikoo");
+			var dataForm = new FormData();
+			dataForm.append("avancer", HMI.getX());
+			dataForm.append("idle", HMI.getPosIdle());
+			dataForm.append("rest", HMI.getPosRest());
+			dataForm.append("tourner", HMI.getY());
+			
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.open("POST", "/command", true);
+			xmlhttp.send(dataForm);
+			//alert("form sent !");
+		};
+	</script>
+	<form action="/command" method="POST">
+		<input name="in1" type="text"></input>
+		<input type="submit"></input>
+	</form>
+	<button onclick="actionButtonClick();">Action !</button>
+  </body>
+</html>

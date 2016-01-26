@@ -5,7 +5,7 @@ from flask import Flask, render_template, Response, request
 import time
 
 # emulated camera
-from robotDebug import Robot
+from robotDebugFps import Robot
 
 
 #*****************************#
