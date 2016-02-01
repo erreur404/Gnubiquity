@@ -1,62 +1,82 @@
-var sendingData = {
-	'citron':3,
-	'melon':2,
-	'citrouille':1
-}
+var HMI = new Hmi();
+var LEFT_JOY = [0, 0];
+var RIGHT_JOY = [0, 0];
 
-var sendingTo = window.location+"/command/"
-
-function Say(){
-	message=document.getElementById("text").value;
-	//alert(message);
-	sendingData = message.replace(/[ийкл]/g, "e").replace(/[з]/g, "c").replace(/[авд]/g, "a").replace(/[по]/g, "i").replace(/[ыщь]/g, "u").replace(/[фцу]/g, "o");
-	//alert(sendingData);	
-	execute();
-}
-
-var execute = function () {
-	var loading = $.ajax(
-		{
-			'url': sendingTo,
-			'data': sendingData,
-			'dataType': "json",
-			'method': "POST",
-			'error': function() {
-				console.log(loading);
-			},
-			'complete': function () {
-				//alert("sucess !");
-				console.log(loading);
-			}
-		}
-	);
-}
-
-var createDebugWindow = function () {
-	var wind = document.createElement("iframe");
-	wind.id = "debugWindow";
-	wind.style.position="fixed";
-	wind.style.top = "0px";
-	wind.style.left = "0px;"
-	wind.style.zindex = "9999";
-	wind.style.backgroundColor = "rgba(255,255,255,0.5)";
-	wind.style.height = "90%";
-	document.body.appendChild(wind);
-}
-
-var exec_cute = function () {
-	var xhr = new XMLHttpRequest();
-	xhr.open('POST', sendingTo, true);
-	xhr.onloadend = function (err) {
-		console.log(err.target.responseText);
-		document.getElementById("debugWindow").contentDocument.write(err.target.responseText);
+// class HMI
+function Hmi () {
+	this.getForward = function () {
+		return LEFT_JOY[1];
 	};
-	xhr.send(sendingData.toString());
+	this.getTurn = function () {
+		return RIGHT_JOY[0];
+	};
+	////////////////////////////
+	this.getMessage = function () {
+		message=document.getElementById("text").value;
+		document.getElementById("text").value = "";
+		return message.replace(/[éèêë]/g, "e").replace(/[ç]/g, "c").replace(/[àâä]/g, "a").replace(/[ïì]/g, "i").replace(/[ùûü]/g, "u").replace(/[ôöò]/g, "o");
+	}
+	////////////////////////////
+	this.getPosRest = function () {
+		var valt = this._posRestToggle;
+		this._posRestToggle = false;
+		return valt;
+	}
+	this._posRestToggle = false;
+	this._posRestPressedHandle = function (e) {
+		console.log(this);
+		this._posRestToggle = true;
+		actionButtonClick ();
+	};
+	///////////////////////////
+	this.getPosIdle = function () {
+		var vali = this._posIdleToggle;
+		this._posIdleToggle = false;
+		return vali;
+	};
+	this._posIdleToggle = false;
+	this._posIdlePressedHandle = function (e) {
+		console.log(this);
+		this._posIdleToggle = true;
+		actionButtonClick ();
+	};
+	////////////////////////////
+	this.getPosCue = function () {
+		var valc = this._posCueToggle;
+		this._posCueToggle = false;
+		return valc;
+	};
+	this._posCueToggle = false;
+	this._posCuePressedHandle = function (e) {
+		console.log(this);
+		this._posCueToggle = true;
+		actionButtonClick ();
+	};
+	
 }
 
-setTimeout(
-	function (e) {
-		//createDebugWindow();
-	},
-	3000
-);
+
+
+function actionButtonClick () {
+	sendData();
+};
+
+function sendData () {
+	var dataForm = new FormData();
+	dataForm.append("avancer", HMI.getForward());
+	dataForm.append("idle", HMI.getPosIdle());
+	dataForm.append("rest", HMI.getPosRest());
+	dataForm.append("tourner", HMI.getTurn());
+	
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("POST", "/command", true);
+	xmlhttp.send(dataForm);
+};
+
+function sendTTS () {
+	var dataForm = new FormData();
+	dataForm.append("message", HMI.getMessage());
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("POST", "/say", true);
+	xmlhttp.send(dataForm);
+}

@@ -5,7 +5,7 @@ from flask import Flask, render_template, Response, request
 import time
 
 # emulated camera
-from robotDebugFps import Robot
+from robotDebug import Robot
 
 
 #*****************************#
@@ -79,4 +79,4 @@ if __name__ == '__main__':
 	    print("Server running IPV6 on port "+str(host_port))
 	else:
             host_name = "0.0.0.0"
-	app.run(host=host_name, port=80, debug=True, threaded=True)
+        app.run(host=host_name, port=80, debug=True, threaded=True)

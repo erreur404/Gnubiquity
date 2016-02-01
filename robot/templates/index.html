@@ -76,9 +76,9 @@
 					
 					<div id="Buttons">
 						<img class="Button" id="joystickG" src="{{ url_for('static', filename='Button.png') }}">
-						<img class="ButtonB" src="{{ url_for('static', filename='Assis.png') }}">
-						<img class="ButtonB" src="{{ url_for('static', filename='Debout.png') }}">
-						<img class="ButtonB" src="{{ url_for('static', filename='SigneMain.png') }}">
+						<img class="ButtonB" onclick="HMI._posRestPressedHandle();" id="rest_button" src="{{ url_for('static', filename='Assis.png') }}">
+						<img class="ButtonB" onclick="HMI._posIdlePressedHandle();" id="idle_button" src="{{ url_for('static', filename='Debout.png') }}">
+						<img class="ButtonB" onclick="HMI._posCuePressedHandle();" id="cue_button" src="{{ url_for('static', filename='SigneMain.png') }}">
 						<img class="ButtonB" id="Micro" src="{{ url_for('static', filename='Micro.png') }}">
 						<img class="Button" id="joystickD" src="{{ url_for('static', filename='Button.png') }}">
 					</div>
@@ -129,6 +129,7 @@
 					var x = event.clientX - LeftG + window.scrollX - joystickG.width/2;
 					var y = event.clientY + window.scrollY -TopG - joystickG.height/2 - 12;
 					var coor = "Coordinates Left: (" + x + "," + y + ")";
+					LEFT_JOY = [x, y];
 					document.getElementById("CoordonneesG").innerHTML = coor;
 					console.log('Vous vous êtes déplacés au point de coordonnés: ' + x + ', ' + y );
 				}
@@ -160,6 +161,7 @@
 					var x2 = event.clientX - LeftD + window.scrollX - joystickG.width/2;
 					var y2 = event.clientY - TopD - joystickD.height/2 + window.scrollY - 12;
 					var coor2 = "Coordinates Right: (" + x2 + "," + y2 + ")";
+					RIGHT_JOY = [x2, y2];
 					document.getElementById("CoordonneesD").innerHTML = coor2;
 					console.log('Vous vous êtes déplacés au point de coordonnés: ' + x2 + ' , ' + y2 );
 				}
