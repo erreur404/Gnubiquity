@@ -75,8 +75,8 @@ def say():
 if __name__ == '__main__':
 	host_name = "0.0.0.0"
 	if (IPV6):
-		host_name = "::"
-		print("Server running IPV6 on port "+str(host_port))
+	    host_name = "::"
+	    print("Server running IPV6 on port "+str(host_port))
 	else:
-		
-    app.run(host=host_name, port=80, debug=True, threaded=True)
+            host_name = "0.0.0.0"
+	app.run(host=host_name, port=80, debug=True, threaded=True)
