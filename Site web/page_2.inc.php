@@ -2,7 +2,7 @@
 <?php include 'SiteNao.css'; ?>
 </style>
 <?php
-include 'page_2.inc.js';
+include 'rhythm-sample.js';
 
 ?>
 <div id="contenu0">
@@ -13,15 +13,8 @@ include 'page_2.inc.js';
 
     <div id="contenu10">
 		<p>
-			<label for="ip"> Ip :</label>
-			<input type="text" name="ip" id="ip" placeholder="127.0.0.1" requiered/>
-		</p>
-		<p>
-			<label for="message"> Message :</label>
-			<input type=text name=message id=message placeholder="Hello World" value=""/>
-		</p>
-		<p>
-		<button type=button onclick=Say()>Envoi!</button>
+		<input onclick="RhythmSample.play();" value="Play" type="button">
+		</input>
 		</p>
     </div>
 </div>
