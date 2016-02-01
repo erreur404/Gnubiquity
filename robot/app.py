@@ -12,6 +12,7 @@ from robotDebugFps import Robot
 #     CONSTANTS & CONFIG      #
 #*****************************#
 FPS_LIMIT = 15
+IPV6 = False
 
 
 
@@ -72,4 +73,10 @@ def say():
     return str(request.form["Say"])
 
 if __name__ == '__main__':
-    app.run(host='::', port=80, debug=True, threaded=True)
+	host_name = "0.0.0.0"
+	if (IPV6):
+		host_name = "::"
+		print("Server running IPV6 on port "+str(host_port))
+	else:
+		
+    app.run(host=host_name, port=80, debug=True, threaded=True)
