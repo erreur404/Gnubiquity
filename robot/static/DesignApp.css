@@ -218,7 +218,6 @@ input{
 #output > img{
 	max-height:26em;
 	width:auto;
-	min-width:41em;
 }
 canvas{
 	border:#666 1px solid;
