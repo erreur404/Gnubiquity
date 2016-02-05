@@ -5,14 +5,14 @@ import time
 
 class Control(Thread):
 
-    """Thread chargé simplement d'afficher une lettre dans la console."""
+    """Thread charge simplement d'afficher une lettre dans la console."""
 
     def __init__(self, command):
         Thread.__init__(self)
         self.command = command
 
     def run(self):
-        """Code à exécuter pendant l'exécution du thread."""
+        """Code a executer pendant l'execution du thread."""
         NaoApplication.main(self.command)
 
 
@@ -23,7 +23,7 @@ class Robot(object):
 
     def __init__(self):
         self.moving = True
-        # Création du thread
+        # Creation du thread
         self.controls = {
                     "forward":False,
                     "backward":False,
@@ -59,13 +59,13 @@ class Robot(object):
     def moveForward(self, speed):
         if (speed > 0):
             self.controls["forward"] = True
-            self.controls["backwars"] = False
+            self.controls["backward"] = False
         elif (speed < 0):
-            self.controls["backwars"] = True
+            self.controls["backward"] = True
             self.controls["forward"] = False
         else:
             self.controls["forward"] = False
-            self.controls["backwars"] = False
+            self.controls["backward"] = False
         print("j'avance a "+str(speed)+" de ma vitesse !")
 
     def turn(self, speed):
