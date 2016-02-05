@@ -19,6 +19,14 @@ class NaoApplication:
     def __init__(self):
         self.features = []
         self.robots = []
+        self.feature={
+                    "forward":False,
+                    "backward":False,
+                    "right":False,
+                    "left":False,
+                    "stop":False,
+                    "arm":False,
+                    "head":False}
         
     def main():
             'Initialization of a new NaoApplication instance'         
@@ -65,14 +73,7 @@ class NaoApplication:
             root = Tk()
             champ_label = Label(root, text=" Gnubiquity ")
             champ_label.pack()
-            feature={
-                    "forward":False,
-                    "backward":False,
-                    "right":False,
-                    "left":False,
-                    "stop":False,
-                    "arm":False,
-                    "head":False}
+           
             
 
             def clavier():
@@ -160,19 +161,28 @@ class NaoApplication:
 ##               arret()
 ##               time.sleep(2)
 ##
-               if stop:
+
+               "forward":False,
+                    "backward":False,
+                    "right":False,
+                    "left":False,
+                    "stop":False,
+                    "arm":False,
+                    "head":False}
+                    
+               if  feature["stop"]:
                    arret()
-               elif av :
+               elif  feature["forward"] :
                    avant()
-               elif ar :
+               elif  feature["backward"] :
                    arriere()
-               elif dr :
+               elif feature["right"]:
                    droite()
-               elif ga :
+               elif feature["left"] :
                    gauche ()
-               elif br :
+               elif feature["arm"] :
                     bras ()
-               elif tt :
+               elif feature["head"] :
                     tete ()
                
                
