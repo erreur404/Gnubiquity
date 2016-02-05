@@ -24,7 +24,6 @@ function Hmi () {
 	}
 	this._posRestToggle = false;
 	this._posRestPressedHandle = function (e) {
-		console.log(this);
 		this._posRestToggle = true;
 		actionButtonClick ();
 	};
@@ -36,7 +35,6 @@ function Hmi () {
 	};
 	this._posIdleToggle = false;
 	this._posIdlePressedHandle = function (e) {
-		console.log(this);
 		this._posIdleToggle = true;
 		actionButtonClick ();
 	};
@@ -48,7 +46,6 @@ function Hmi () {
 	};
 	this._posCueToggle = false;
 	this._posCuePressedHandle = function (e) {
-		console.log(this);
 		this._posCueToggle = true;
 		actionButtonClick ();
 	};
@@ -66,6 +63,7 @@ function sendData () {
 	dataForm.append("avancer", HMI.getForward());
 	dataForm.append("idle", HMI.getPosIdle());
 	dataForm.append("rest", HMI.getPosRest());
+	dataForm.append("cue", HMI.getPosCue());
 	dataForm.append("tourner", HMI.getTurn());
 	
 	var xmlhttp = new XMLHttpRequest();
