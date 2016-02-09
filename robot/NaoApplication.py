@@ -1,8 +1,5 @@
-import socket
-import json
 import sys
 import math
-from Tkinter import *
 from Features.Move import *
 from Features.Arm import *
 from Features.Stop import *
@@ -29,32 +26,6 @@ def main(feature):
         mO = Move()
         aR= Arm()
         tT= Head()
-
-        'JSON Object Initialization '
-        data_ident = {'From':'193.48.125.67', 'To':'193.48.125.64', 'MsgType':'Ident', 'EquipmentType':'Robot'}
-        'Serializing Object Data to a JSON formated str'
-        result_ident = json.dumps(data_ident)
-        'New Socket Initialization'
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        
-    # creation d une instance de la classe TK, que lon affecte a l objet "root"
-        root = Tk()
-        champ_label = Label(root, text=" Gnubiquity ")
-        champ_label.pack()
-       
-        
-
-        def clavier():
-            touche = event.keysym
-            print(touche)
-        # Fenetre recueration touche    
-        canvas = Canvas(root, width=500, height=500)
-        canvas.focus_set()
-        canvas.bind("<Key>", clavier)
-        canvas.pack()
-
-
-
 
         def avant():
              feature["forward"] = True
@@ -100,36 +71,7 @@ def main(feature):
             tts.say("tete","French")
             feature["head"] = False
 
-
-        # Recuperation touches clavier
-        root.bind("<KeyRelease>", arret) # relache touches 
-        root.bind("<Up>", avant) # Fleche haut
-        root.bind("<Down>",arriere) # Bas
-        root.bind("<Left>", gauche) # Gauche
-        root.bind("<Right>", droite) # Droite
-        root.bind("<space>", bras) # barre despace
-
         while(True):
-           
-           # root.mainloop()
-
-##               tete()
-##               time.sleep(5)
-##              
-##               avant()
-##               time.sleep(5)               
-##               arret()
-##               time.sleep(2)
-##               droite()
-##               time.sleep(2)
-##               arret()
-##               time.sleep(2)
-##               arriere()
-##               time.sleep(2)
-##               arret()
-##               time.sleep(2)
-##
-
                 
            if  feature["stop"]:
                arret()
