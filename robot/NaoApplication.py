@@ -16,9 +16,7 @@ from naoqi import ALModule
 
 
    
-def main():
-        'Initialization of a new NaoApplication instance'         
-        na = NaoApplication()
+def main(feature):
         'NAOIP_ORANGE: 193.48.125.63'
         'NAOIP_GRIS: 193.48.125.62'  
         robotIP= "193.48.125.63";
@@ -31,24 +29,6 @@ def main():
         mO = Move()
         aR= Arm()
         tT= Head()
-        
-        'Adding the features to the list of features of the NaoAppliaction instance'
-
-        na.features.append(sT)
-        na.features.append(mO)
-        na.features.append(aR)
-        na.features.append(tT)
-        
-
-        "Getting a list of Features name"
-        NaoFeaturesList = []
-        for i in range (0, len(na.features)):
-            featureName = na.features[i].name
-            NaoFeaturesList.append(featureName)
-        print ("Nao Features List:")
-
-        'Adding the robot to the list of robots of the NaoApplication instance'
-        na.robots.append(nao)
 
         'JSON Object Initialization '
         data_ident = {'From':'193.48.125.67', 'To':'193.48.125.64', 'MsgType':'Ident', 'EquipmentType':'Robot'}
