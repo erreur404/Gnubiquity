@@ -1,7 +1,6 @@
 from time import time
 import NaoApplication
 from threading import Thread
-import time
 
 class Control(Thread):
 
@@ -38,7 +37,7 @@ class Robot(object):
         self.threadc = Control(self.controls)
         # Lancement du thread
         self.threadc.start()
-        self.frames = [open('_robotDebug/'+str(f) + '.jpg', 'rb').read() for f in range(1,10)]
+        self.frames = [open('_robotDebug/'+str(f) + '.jpg', 'rb').read() for f in range(1,29)]
 
     def get_frame(self):
         #time.sleep(0.5)
@@ -66,7 +65,7 @@ class Robot(object):
         else:
             self.controls["forward"] = False
             self.controls["backward"] = False
-        print("j'avance a "+str(speed)+" de ma vitesse !")
+        #print("j'avance a "+str(speed)+" de ma vitesse !")
 
     def turn(self, speed):
         if (speed > 0):
@@ -78,7 +77,7 @@ class Robot(object):
         else:
             self.controls["right"] = False
             self.controls["left"] = False
-        print("je tourne a "+str(speed)+" de ma vitesse !")
+        #print("je tourne a "+str(speed)+" de ma vitesse !")
 
     def __del__(self):
         thread_1.join()

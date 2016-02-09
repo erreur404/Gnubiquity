@@ -60,6 +60,7 @@ def main(feature):
 
     
         def bras():
+            exit()
             feature["arm"] = True
             aR.runOnRobot(nao,feature)
             tts.say("bras","French")

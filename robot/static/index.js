@@ -1,6 +1,7 @@
 var HMI = new Hmi();
 var LEFT_JOY = [0, 0];
 var RIGHT_JOY = [0, 0];
+var JOY_DELAY = 300; // every 300ms the joystick values are sent (at least)
 
 // class HMI
 function Hmi () {
@@ -78,3 +79,10 @@ function sendTTS () {
 	xmlhttp.open("POST", "/say", true);
 	xmlhttp.send(dataForm);
 }
+
+setInterval(function(){
+	if (joyDPressed = true || joyGPressed = true)
+	{
+		actionButtonClick();
+	}
+}, JOY_DELAY);

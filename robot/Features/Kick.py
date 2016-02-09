@@ -5,8 +5,7 @@ import math
 import motion
 import almath as m # python's wrapping of almath
 import almath
-import argparse
-import Image
+import argparse
 
 from naoqi import ALProxy
 from naoqi import ALBroker

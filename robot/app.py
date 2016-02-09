@@ -61,7 +61,7 @@ def video_feed():
 
 @app.route('/command', methods=['POST'])
 def command():
-    print(request.form)
+    #print(request.form)
     if (request.form["idle"] == 'true'):
         robot.setPositionIdle()
     elif (request.form["rest"] == 'true'):
@@ -70,9 +70,11 @@ def command():
         robot.setPositionCue()
     robot.moveForward(int(request.form["avancer"]))
     robot.turn(int(request.form["tourner"]))
+    """
     print("idle : "+str(request.form["idle"])+"\n"+
           "rest : "+str(request.form["rest"])+"\n"+
           "cue : "+str(request.form["cue"]))
+    """
     return "0"
 
 @app.route('/say', methods=['POST'])
