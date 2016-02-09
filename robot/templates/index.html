@@ -11,50 +11,29 @@
 	<!--
 	/////////////////////////////////////////////////////////////
 	-->
-	<!--
-		<script>
-			function draw(x,y){
-			var canvas = document.getElementById('canvas');
-			var ctx = canvas.getContext('2d');						ctx.save();
-			ctx.clearRect(0,0,550,400);
-			ctx.fillStyle = "rgba(0,200,0,1)";
-			ctx.fillRect (x, y, 50, 50);
-			ctx.restore(); 
-			x += 1;
-			var loopTimer = setTimeout('draw('+x+','+y+')',30);
-			}
-		</script>
-	-->
+	
 	</head>
-
+	
 	<body>
-		<div id="Upper">
+	<div id="hide">
+			<center>	
 			<div id="Upper1">
 				<center>
 					<img id="ImgLogo" src="{{ url_for('static', filename='LogoApp2.png') }}">
 					<br/>
 				</center>
 			</div>
-			
-			<!--
-			<div id="Button">
-				<center>
-				<img id="myImage" onclick="changeImage()" src="{{ url_for('static', filename='Button1Click.png') }}" width="80" height="40">
-				</center>
-				<script>
-				function changeImage() {
-					var image = document.getElementById('myImage');
-					if (image.src.match("Button2Click")) {
-						image.src = "Button1click.png";
-					} else {
-						image.src = "Button2Click.png";
-					}
-				}
-				
-				</script>
+			</center>
+			<br/>
+			<center>	
+			<div id="Upper">
+						<div id="Button">
+							<center>
+							<img id="myImage" onclick="changeImage()" src="Button2Click.png" width="80" height="40">
+							</center>	
+						</div>
 			</div>
-			-->
-		</div>
+			</center>
 		<div id="EnsembleTot">
 			<div id="Connexion"> 
 				<ul>
@@ -67,20 +46,22 @@
 				<div id="CadreCentral">
 					Here, the video connexion of Nao :
 					
-					<br/><br/><br/>
+					<br/>
 					<center>
 					
-					<div id = "output">	
+					<div id = "output">		
 						<img src="{{ url_for('video_feed') }}">
 					</div>
 					
+					</center>
+					
 					<div id="Buttons">
-						<img class="Button" id="joystickG" src="{{ url_for('static', filename='Button.png') }}">
-						<img class="ButtonB" onclick="HMI._posRestPressedHandle();" id="rest_button" src="{{ url_for('static', filename='Assis.png') }}">
-						<img class="ButtonB" onclick="HMI._posIdlePressedHandle();" id="idle_button" src="{{ url_for('static', filename='Debout.png') }}">
-						<img class="ButtonB" onclick="HMI._posCuePressedHandle();" id="cue_button" src="{{ url_for('static', filename='SigneMain.png') }}">
-						<img class="ButtonB" id="Micro" src="{{ url_for('static', filename='Micro.png') }}">
-						<img class="Button" id="joystickD" src="{{ url_for('static', filename='Button.png') }}">
+						<img class="Button" id="joystickG" src="{{ url_for('static', filename='Button.png') }}" draggable="false">
+						<img class="ButtonB" onclick="HMI._posRestPressedHandle();" id="rest_button" src="{{ url_for('static', filename='Assis.png') }}" draggable="false">
+						<img class="ButtonB" onclick="HMI._posIdlePressedHandle();" id="idle_button" src="{{ url_for('static', filename='Debout.png') }}" draggable="false">
+						<img class="ButtonB" onclick="HMI._posCuePressedHandle();" id="cue_button" src="{{ url_for('static', filename='SigneMain.png') }}" draggable="false">
+						<img class="ButtonB" onmouseup="toggleRecording(this);" onmousedown="toggleRecording(this);" id="record" src="{{ url_for('static', filename='Micro.png') }}" draggable="false">
+						<img class="Button" id="joystickD" src="{{ url_for('static', filename='Button.png') }}" draggable="false">
 					</div>
 				</div>
 				<div id="CadreCentralbis">
@@ -94,17 +75,36 @@
 					<p id="CoordonneesG"></p>
 					<p id="CoordonneesD"></p>
 				</div>
-				<!--
-				<button onclick="draw(0,0)">Draw</button>
-				<canvas id="canvas" width="550" height="400"></canvas>
-				-->
-	
 			</div>
 		</div>
 		
 		<div id="Lower">
 		
+			<marquee direction="left"> 
+				All Rights Reserved. Engineering Students concerned : Le Borgne, Attié, Suntharasarma, Fath, Boully.
+			</marquee>
+		
 		</div>
+
+		<script src="recorder.js"></script>
+		<script src="recorderWorker.js"></script>
+		<script src="recording.js"></script>
+	
+		<script>
+			function changeImage() {
+				var image = document.getElementById('myImage');
+				var body = document.getElementById('EnsembleTot');
+					if (image.src.match("Button2Click")) {
+					image.src = "Button1click.png";
+					body.style.visibility = 'hidden';
+					} else {
+						image.src = "Button2Click.png";
+						body.style.visibility = 'visible';
+							}
+						}
+					
+						
+		</script>
 		
 		<script type="text/javascript">
 	
@@ -125,21 +125,17 @@
 			}
 			
 			function onMouseMove_page(event){
-				if (joyGPressed)
-				{
-					var x = event.clientX - LeftG + window.scrollX - joystickG.width/2;
-					var y = event.clientY + window.scrollY -TopG - joystickG.height/2 - 12;
-					var coor = "Coordinates Left: (" + x + "," + y + ")";
-					LEFT_JOY = [x, y];
-					document.getElementById("CoordonneesG").innerHTML = coor;
-					console.log('Vous vous êtes déplacés au point de coordonnés: ' + x + ', ' + y );
-				}
+				var x = event.clientX - LeftG + window.scrollX - joystickG.width/2;
+				var y = 0 - event.clientY - window.scrollY + TopG + joystickG.height/2 + 12;
+				var coor = "Coordinates Left: (" + x + "," + y + ")";
+				LEFT_JOY = [x, y];
+				document.getElementById("CoordonneesG").innerHTML = coor;
 			}
 			
 			joyG.onmousedown = activateJoyG;
 			joyG.onmousemove = onMouseMove_page;
 			joyG.onmouseleave = inhibitJoyG;
-			//joyG.onmouseup = inhibitJoyG;
+			joyG.onmouseup = inhibitJoyG;
 			
 			/*
 			Ici le script du Joystick Droit
@@ -158,21 +154,17 @@
 			}
 			
 			function onMouseMove_page2(event){
-				if (joyDPressed)
-				{
-					var x2 = event.clientX - LeftD + window.scrollX - joystickG.width/2;
-					var y2 = event.clientY - TopD - joystickD.height/2 + window.scrollY - 12;
-					var coor2 = "Coordinates Right: (" + x2 + "," + y2 + ")";
-					RIGHT_JOY = [x2, y2];
-					document.getElementById("CoordonneesD").innerHTML = coor2;
-					console.log('Vous vous êtes déplacés au point de coordonnés: ' + x2 + ' , ' + y2 );
-				}
+				var x2 = event.clientX - LeftD + window.scrollX - joystickG.width/2;
+				var y2 = 0 - event.clientY - window.scrollY + TopG + joystickG.height/2 + 12;
+				var coor2 = "Coordinates Right: (" + x2 + "," + y2 + ")";
+				RIGHT_JOY = [x2, y2];
+				document.getElementById("CoordonneesD").innerHTML = coor2;
 			}
 			
 			joyD.onmousedown = activateJoyD;
 			joyD.onmousemove = onMouseMove_page2;
 			joyD.onmouseleave = inhibitJoyD;
-			//joyD.onmouseup = inhibitJoyD;
+			joyD.onmouseup = inhibitJoyD;
 			
 			/*
 			Position des Joystick :
@@ -199,7 +191,7 @@
 			TopG=joyG.offsetTop;
 			
 		</script>
-	
+	</div>
 	</body>
 
 </html>
