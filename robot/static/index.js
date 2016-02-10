@@ -81,7 +81,7 @@ function sendTTS () {
 }
 
 setInterval(function(){
-	if (joyDPressed = true || joyGPressed = true)
+	if (joyDPressed == true || joyGPressed == true)
 	{
 		actionButtonClick();
 	}

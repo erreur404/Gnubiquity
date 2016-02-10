@@ -65,7 +65,7 @@ class Robot(object):
         else:
             self.controls["forward"] = False
             self.controls["backward"] = False
-        #print("j'avance a "+str(speed)+" de ma vitesse !")
+        print("j'avance a "+str(speed)+" de ma vitesse !")
 
     def turn(self, speed):
         if (speed > 0):
@@ -77,7 +77,7 @@ class Robot(object):
         else:
             self.controls["right"] = False
             self.controls["left"] = False
-        #print("je tourne a "+str(speed)+" de ma vitesse !")
+        print("je tourne a "+str(speed)+" de ma vitesse !")
 
     def __del__(self):
         thread_1.join()
