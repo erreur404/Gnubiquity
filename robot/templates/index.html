@@ -7,6 +7,9 @@
 		<meta charset=utf8>
 		<link rel="stylesheet" href="{{ url_for('static', filename='DesignApp.css') }}" />
 		<script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='recorder.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='recorderWorker.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='recording.js') }}"></script>
 		
 	<!--
 	/////////////////////////////////////////////////////////////
@@ -29,7 +32,7 @@
 			<div id="Upper">
 						<div id="Button">
 							<center>
-							<img id="myImage" onclick="changeImage()" src="Button2Click.png" width="80" height="40">
+							<img id="myImage" onclick="changeImage()" src="{{ url_for('static',filename='Button2Click.png') }}" width="80" height="40">
 							</center>	
 						</div>
 			</div>
@@ -95,10 +98,10 @@
 				var image = document.getElementById('myImage');
 				var body = document.getElementById('EnsembleTot');
 					if (image.src.match("Button2Click")) {
-					image.src = "Button1click.png";
+					image.src = "{{ url_for('static',filename='Button1click.png') }}";
 					body.style.visibility = 'hidden';
 					} else {
-						image.src = "Button2Click.png";
+						image.src = "{{ url_for('static', filename='Button2Click.png') }}";
 						body.style.visibility = 'visible';
 							}
 						}
