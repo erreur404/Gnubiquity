@@ -1,5 +1,6 @@
 from time import time
-import NaoApplication
+#import NaoApplication as NaoApplication
+import NaoApplicationEmulation as NaoApplication
 from threading import Thread
 
 class Control(Thread):
@@ -56,6 +57,7 @@ class Robot(object):
         print("j attire l attention")
 
     def moveForward(self, speed):
+        """
         if (speed > 0):
             self.controls["forward"] = True
             self.controls["backward"] = False
@@ -65,9 +67,12 @@ class Robot(object):
         else:
             self.controls["forward"] = False
             self.controls["backward"] = False
+        """
+        self.controls["forward"]=speed
         print("j'avance a "+str(speed)+" de ma vitesse !")
 
     def turn(self, speed):
+        """
         if (speed > 0):
             self.controls["right"] = True
             self.controls["left"] = False
@@ -77,10 +82,13 @@ class Robot(object):
         else:
             self.controls["right"] = False
             self.controls["left"] = False
+        """
+        self.controls["left"]=speed
         print("je tourne a "+str(speed)+" de ma vitesse !")
 
     def playSound(sound):
         return
 
     def __del__(self):
-        thread_1.join()
+        pass
+        #self.threadc.join()

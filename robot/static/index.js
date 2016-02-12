@@ -3,6 +3,11 @@ var LEFT_JOY = new Joystick();
 var RIGHT_JOY = new Joystick();
 var JOY_DELAY = 300; // every 300ms the joystick values are sent (at least)
 
+var old_data = {
+	'x':0,
+	'y':0
+};
+
 function Joystick () {
 	this.html = {};
 	this.activation = false;
@@ -38,6 +43,14 @@ function Joystick () {
 		return this.activation;
 	}
 	
+	this.getX = function () {
+		return this.x;
+	}
+	
+	this.getY = function () {
+		return this.y;
+	}
+	
 	this.onMoveHandle = function (event) {
 		var joyPos = this.getClientRects()[0];
 		// [-100;100] values normalization
@@ -50,10 +63,10 @@ function Joystick () {
 // class HMI
 function Hmi () {
 	this.getForward = function () {
-		return LEFT_JOY[1];
+		return LEFT_JOY.getY();
 	};
 	this.getTurn = function () {
-		return RIGHT_JOY[0];
+		return RIGHT_JOY.getX();
 	};
 	////////////////////////////
 	this.getMessage = function () {
@@ -125,8 +138,10 @@ function sendTTS () {
 }
 
 setInterval(function(){
-	if (LEFT_JOY.getActivation() == true || RIGHT_JOY.getActivation() == true)
+	if (old_data.x != HMI.getForward() || old_data.y != HMI.getTurn())
 	{
 		actionButtonClick();
+		old_data.x = HMI.getForward();
+		old_data.y = HMI.getTurn();
 	}
 }, JOY_DELAY);
