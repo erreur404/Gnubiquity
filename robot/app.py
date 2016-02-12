@@ -83,6 +83,11 @@ def say():
     #return str(request.body)
     return str(request.form["Say"])
 
+@app.route('/sound', methods=['POST'])
+def replayVoice():
+    robot.playSound(request.form["data"])
+    return "0"
+
 if __name__ == '__main__':
 	host_name = "0.0.0.0"
 	if (IPV6):

@@ -88,10 +88,6 @@
 			</marquee>
 		
 		</div>
-
-		<script src="recorder.js"></script>
-		<script src="recorderWorker.js"></script>
-		<script src="recording.js"></script>
 	
 		<script>
 			function changeImage() {
@@ -111,50 +107,12 @@
 		
 		<script type="text/javascript">
 	
-			/*
-			Ici le script du Joystick Gauche
-			*/
-			
 			var joyG = document.getElementById("joystickG");
-			var joyGPressed = false;
-			
-			function activateJoyG() {
-				joyGPressed = true;
-			}
-			
-			function inhibitJoyG() {
-				joyGPressed = false;
-				LEFT_JOY = [0,0];
-			}
-			
-			function onMouseMove_page(event){
-				var x = event.clientX - LeftG + window.scrollX - joystickG.width/2;
-				var y = 0 - event.clientY - window.scrollY + TopG + joystickG.height/2 + 12;
-				var coor = "Coordinates Left: (" + x + "," + y + ")";
-				LEFT_JOY = [x, y];
-				document.getElementById("CoordonneesG").innerHTML = coor;
-			}
-			
-			joyG.onmousedown = activateJoyG;
-			joyG.onmousemove = onMouseMove_page;
-			joyG.onmouseleave = inhibitJoyG;
-			joyG.onmouseup = inhibitJoyG;
-			
-			/*
-			Ici le script du Joystick Droit
-			*/
+			LEFT_JOY.bind(joyG);
 			
 			var joyD = document.getElementById("joystickD");
-			var joyDPressed = false;
-			
-			function activateJoyD() {
-				joyDPressed = true;
-			}
-			
-			function inhibitJoyD() {
-				joyDPressed = false;
-				RIGHT_JOY = [0,0];
-			}
+			RIGHT_JOY.bind(joyD);
+
 			
 			function onMouseMove_page2(event){
 				var x2 = event.clientX - LeftD + window.scrollX - joystickG.width/2;
@@ -163,35 +121,7 @@
 				RIGHT_JOY = [x2, y2];
 				document.getElementById("CoordonneesD").innerHTML = coor2;
 			}
-			
-			joyD.onmousedown = activateJoyD;
-			joyD.onmousemove = onMouseMove_page2;
-			joyD.onmouseleave = inhibitJoyD;
-			joyD.onmouseup = inhibitJoyD;
-			
-			/*
-			Position des Joystick :
-			*/
-			
-			function FindPosX(joyD){
-				return joyD.offsetLeft;
-			} 
-			function FindPosY(joyD){
-				return joyD.offsetTop;
-			} 
-			LeftD=joyD.offsetLeft;
-			TopD=joyD.offsetTop;
-			
-			////////////////////////////////////////////////
-			
-			function FindPosX(joyG){
-				return joyG.offsetLeft;
-			} 
-			function FindPosY(joyG){
-				return joyG.offsetTop;
-			} 
-			LeftG=joyG.offsetLeft;
-			TopG=joyG.offsetTop;
+
 			
 		</script>
 	</div>

@@ -79,5 +79,8 @@ class Robot(object):
             self.controls["left"] = False
         print("je tourne a "+str(speed)+" de ma vitesse !")
 
+    def playSound(sound):
+        return
+
     def __del__(self):
         thread_1.join()
