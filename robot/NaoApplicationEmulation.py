@@ -79,9 +79,9 @@ def main(feature):
         #------------------------------------------------ Fonctions
 
         def debug(data, color=(255,255,255)):
-            screen.blit(sans.render(str(data), True, color,(0,0,0)),(50,50))
+            screen.blit(sans.render(str(data), True, color,(0,0,0)),(XMAX/2,50))
             recta = sans.size(str(data))
-            print(data)
+            #print(data)
             pygame.display.update((XMAX/2,50,recta[0],recta[1]))
 
         def addRect(listRect):
@@ -190,27 +190,22 @@ def main(feature):
 
         robot_ico = pygame.image.load('robot_ico.png').convert_alpha()
 
-
-
-
-        fullRefresh() #============== affiche les boutons
-        temp = screen.copy()
-        pygame.display.flip()
-
-
         perso = {
-                "x":300,
-                "y":300,
-                "orientation":0,
-                "head":0
+                "x":300.0,
+                "y":300.0,
+                "orientation":90.0,
+                "head":0.0,
+                "mcoef":1.0/100,
+                "tcoef":1.0/100
         }
 
         def move(s):
-             perso["x"] += s*math.sin(math.pi*2*perso["orientation"]/360)
-             perso["y"] += s*math.cos(math.pi*2*perso["orientation"]/360)
+             perso["x"] -= s*math.sin(math.pi*2*perso["orientation"]/360)*perso["mcoef"]
+             print("speed :"+str(s)+"speedx : "+str(s*math.sin(math.pi*2*perso["orientation"]/360)*perso["mcoef"]))
+             perso["y"] -= s*math.cos(math.pi*2*perso["orientation"]/360)*perso["mcoef"]
 
         def turn(s):
-            perso["orientation"] = (perso["orientation"]+s*3.6)%360
+            perso["orientation"] = (perso["orientation"]+perso["tcoef"]*s*3.6)%360
 
         
         def arret():
@@ -229,23 +224,27 @@ def main(feature):
         pygame.init()
 
         while(True):
-                
                 if  feature["stop"]:
                         arret()
                 elif  feature["forward"] :
-                       move(feature["forward"])
+                        move(feature["forward"])
                 elif feature["left"] :
-                       turn (feature["left"])
+                        turn (feature["left"])
                 elif feature["arm"] :
                         bras ()
                 elif feature["head"] :
                         tete ()
                 elif feature["sit"] :
                         debug("SITH")
+                        feature["sit"] = False
                 elif feature["stand"] :
                         debug("STAND")
+                        feature["stand"] = False
 
-                debug(str(feature))
+                THE_ONE.set_angle(perso["orientation"]+perso["head"])
+                THE_ONE.set_pos((perso["x"], perso["y"]))
+
+                fullRefresh()
 
                 for event in pygame.event.get():
                         if event.type == pygame.QUIT:
@@ -258,11 +257,9 @@ def main(feature):
                                 XMAX = screen.get_size()[0]
                                 YMAX = screen.get_size()[1]
                                 fullRefresh()
-
-                        screen.blit(temp,(0,0))
-                        
-                        pygame.display.flip()
-                        clock.tick(30)
-                        # blit & flip...
+                       
+                pygame.display.flip()
+                clock.tick(30)
+                # blit & flip...
         pygame.quit()
 pygame.quit()

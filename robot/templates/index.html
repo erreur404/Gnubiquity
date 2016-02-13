@@ -112,16 +112,6 @@
 			
 			var joyD = document.getElementById("joystickD");
 			RIGHT_JOY.bind(joyD);
-
-			
-			function onMouseMove_page2(event){
-				var x2 = event.clientX - LeftD + window.scrollX - joystickG.width/2;
-				var y2 = 0 - event.clientY - window.scrollY + TopG + joystickG.height/2 + 12;
-				var coor2 = "Coordinates Right: (" + x2 + "," + y2 + ")";
-				RIGHT_JOY = [x2, y2];
-				document.getElementById("CoordonneesD").innerHTML = coor2;
-			}
-
 			
 		</script>
 	</div>

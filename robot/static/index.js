@@ -16,20 +16,21 @@ function Joystick () {
 	this.html.onmousedown = function () {};
 	this.html.onmousemove = function () {};
 	this.html.onmouseleave = function () {};
-	this.html.onmouseup = function () {};
 
 	this.bind = function (htmlObj) {
 		this.html = htmlObj;
 		this.activation = false;
 		this.x = 0;
 		this.y = 0;
-		this.html.onmousedown = this.activate;
-		this.html.onmousemove = this.onMoveHandle;
-		this.html.onmouseleave = this.inhibate;
-		this.html.onmouseup = this.inhibate;
+		// .bind(this)  : 'this' in the the methods will refer to 
+		// this <-- object not the event target
+		this.html.onmousedown = this.activate.bind(this);
+		this.html.onmousemove = this.onMoveHandle.bind(this);
+		this.html.onmouseleave = this.inhibate.bind(this);
 	};
 	
 	this.activate = function () {
+		console.log("joystick active")
 		this.activation = true;
 	};
 	
@@ -52,11 +53,11 @@ function Joystick () {
 	}
 	
 	this.onMoveHandle = function (event) {
-		var joyPos = this.getClientRects()[0];
+		var joyPos = event.target.getClientRects()[0];
 		// [-100;100] values normalization
-		var x = Math.round(100*(-(event.clientX - joyPos.left) + joyPos.width/2)/(joyPos.width/2));
-		var y = Math.round(100*(-(event.clientY - joyPos.top) + joyPos.height/2)/(joyPos.height/2));
-		//console.log(x + " -- " + y);
+		this.x = Math.round(100*(-(event.clientX - joyPos.left) + joyPos.width/2)/(joyPos.width/2));
+		this.y = Math.round(100*(-(event.clientY - joyPos.top) + joyPos.height/2)/(joyPos.height/2));
+		//console.log(this.x + " -- " + this.y);
 	};
 }
 
