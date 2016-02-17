@@ -25,10 +25,8 @@ class Robot(object):
         self.moving = True
         # Creation du thread
         self.controls = {
-                    "forward":False,
-                    "backward":False,
-                    "right":False,
-                    "left":False,
+                    "forward":[0, 0]
+                    "rotation":0,
                     "stop":False,
                     "arm":False,
                     "sit":False,
@@ -56,35 +54,16 @@ class Robot(object):
         self.controls["arm"] = True
         print("j attire l attention")
 
-    def moveForward(self, speed):
-        """
-        if (speed > 0):
-            self.controls["forward"] = True
-            self.controls["backward"] = False
-        elif (speed < 0):
-            self.controls["backward"] = True
-            self.controls["forward"] = False
-        else:
-            self.controls["forward"] = False
-            self.controls["backward"] = False
-        """
-        self.controls["forward"]=speed
-        print("j'avance a "+str(speed)+" de ma vitesse !")
+    def moveForward(self, joystick):
+        self.controls["forward"]=[joystick[1], joystick[0]]
 
-    def turn(self, speed):
-        """
-        if (speed > 0):
-            self.controls["right"] = True
-            self.controls["left"] = False
-        elif (speed < 0):
-            self.controls["left"] = True
-            self.controls["right"] = False
+    def turn(self, joystick):
+        if joystick[0] > 20:
+            self.controls["rotation"] = 1
+        elif joystick[0] < 20:
+            self.controls["rotation"] = -1
         else:
-            self.controls["right"] = False
-            self.controls["left"] = False
-        """
-        self.controls["left"]=speed
-        print("je tourne a "+str(speed)+" de ma vitesse !")
+            self.controls["rotation"] = 0
 
     def playSound(sound):
         return

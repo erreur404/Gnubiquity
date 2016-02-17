@@ -226,18 +226,17 @@ def main(feature):
         while(True):
                 if  feature["stop"]:
                         arret()
-                elif  feature["forward"] :
+                else:
                         move(feature["forward"])
-                elif feature["left"] :
-                        turn (feature["left"])
-                elif feature["arm"] :
+                        turn (feature["rotation"])
+                if feature["arm"] :
                         bras ()
-                elif feature["head"] :
+                if feature["head"] :
                         tete ()
-                elif feature["sit"] :
+                if feature["sit"] :
                         debug("SITH")
                         feature["sit"] = False
-                elif feature["stand"] :
+                if feature["stand"] :
                         debug("STAND")
                         feature["stand"] = False
 

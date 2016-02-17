@@ -68,13 +68,8 @@ def command():
         robot.setPositionRest()
     elif (request.form["cue"] == 'true'):
         robot.setPositionCue()
-    robot.moveForward(int(request.form["avancer"]))
-    robot.turn(int(request.form["tourner"]))
-    """
-    print("idle : "+str(request.form["idle"])+"\n"+
-          "rest : "+str(request.form["rest"])+"\n"+
-          "cue : "+str(request.form["cue"]))
-    """
+    robot.moveForward([int(request.form["leftx"]), int(request.form["lefty"])])
+    robot.turn([int(request.form["rightx"]), int(request.form["righty"])])
     return "0"
 
 @app.route('/say', methods=['POST'])
