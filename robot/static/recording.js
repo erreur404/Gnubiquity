@@ -38,6 +38,13 @@
 	  function createDownloadLink() {
 		recorder && recorder.exportWAV(function(blob) {
 		  var url = URL.createObjectURL(blob);
+		  var oReq = new XMLHttpRequest();
+		  oReq.open("POST", "/son", true);
+		  oReq.onload = function (oEvent) {
+			// Uploaded.
+		  };
+
+		  oReq.send(blob);
 		});
 	  }
 	  window.onload = function init() {
