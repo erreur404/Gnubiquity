@@ -226,6 +226,7 @@
 		border-color:black;
 		background-image:url('FontVideo.jpg');
 		background-size:200em;
+		box-shadow: 0px 1px black;
 		opacity:1;
 	}
 	#output > img{

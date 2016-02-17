@@ -227,7 +227,7 @@ def main(feature):
                 if  feature["stop"]:
                         arret()
                 else:
-                        move(feature["forward"])
+                        move(feature["forward"][0])
                         turn (feature["rotation"])
                 if feature["arm"] :
                         bras ()

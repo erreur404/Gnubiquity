@@ -25,7 +25,7 @@ class Robot(object):
         self.moving = True
         # Creation du thread
         self.controls = {
-                    "forward":[0, 0]
+                    "forward":[0, 0],
                     "rotation":0,
                     "stop":False,
                     "arm":False,
