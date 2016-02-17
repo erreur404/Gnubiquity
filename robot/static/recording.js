@@ -51,7 +51,7 @@
 		try {
 		  // moz shim
 		  window.AudioContext = window.AudioContext || window.mozAudioContext || window.webkitAudioContext;
-		  navigator.getUserMedia = navigator.getUserMedia || navigator.mediaDevices.getUserMedia || navigator.webkitGetUserMedia;
+		  navigator.getUserMedia = navigator.getUserMedia || navigator.mozgetUserMedia || navigator.webkitGetUserMedia;
 		  window.URL = window.URL || window.mozURL || window.webkitURL;
 		  
 		  audio_context = new AudioContext;
