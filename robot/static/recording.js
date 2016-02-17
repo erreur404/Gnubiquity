@@ -39,7 +39,7 @@
 		recorder && recorder.exportWAV(function(blob) {
 		  var url = URL.createObjectURL(blob);
 		  var oReq = new XMLHttpRequest();
-		  oReq.open("POST", "/son", true);
+		  oReq.open("POST", "/sound", true);
 		  oReq.onload = function (oEvent) {
 			// Uploaded.
 		  };
@@ -51,7 +51,7 @@
 		try {
 		  // moz shim
 		  window.AudioContext = window.AudioContext || window.mozAudioContext || window.webkitAudioContext;
-		  navigator.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
+		  navigator.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia || navigator.mediaDevices.getUserMedia;
 		  window.URL = window.URL || window.mozURL || window.webkitURL;
 		  
 		  audio_context = new AudioContext;
