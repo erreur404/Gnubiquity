@@ -4,8 +4,10 @@ var RIGHT_JOY = LEFT_JOY;
 var JOY_DELAY = 300; // every 300ms the joystick values are sent (at least)
 
 var old_data = {
-	'x':0,
-	'y':0
+	'leftx':0,
+	'lefty':0,
+	'rightx':0,
+	'righty':0
 };
 
 function Joystick () {
@@ -30,7 +32,7 @@ function Joystick () {
 	};
 	
 	this.activate = function () {
-		console.log("joystick active")
+		//console.log("joystick active")
 		this.activation = true;
 	};
 	
@@ -63,11 +65,9 @@ function Joystick () {
 
 // class HMI
 function Hmi () {
-	this.getForward = function () {
-		return LEFT_JOY.getY();
-	};
-	this.getTurn = function () {
-		return RIGHT_JOY.getX();
+	this.getJoystickChannel = function (J, chan) {
+		var joy = (J == "Left" ? LEFT_JOY : RIGHT_JOY);
+		return (chan == "X" ? joy.getX() : joy.getY());
 	};
 	////////////////////////////
 	this.getMessage = function () {
@@ -119,11 +119,13 @@ function actionButtonClick () {
 
 function sendData () {
 	var dataForm = new FormData();
-	dataForm.append("avancer", HMI.getForward());
 	dataForm.append("idle", HMI.getPosIdle());
 	dataForm.append("rest", HMI.getPosRest());
 	dataForm.append("cue", HMI.getPosCue());
-	dataForm.append("tourner", HMI.getTurn());
+	dataForm.append("leftx", HMI.getJoystickChannel("Left", "X"));
+	dataForm.append("lefty", HMI.getJoystickChannel("Left", "Y"));
+	dataForm.append("rightx", HMI.getJoystickChannel("Right", "X"));
+	dataForm.append("righty", HMI.getJoystickChannel("Right", "Y"));
 	
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.open("POST", "/command", true);
@@ -139,10 +141,15 @@ function sendTTS () {
 }
 
 setInterval(function(){
-	if (old_data.x != HMI.getForward() || old_data.y != HMI.getTurn())
+	if (old_data.leftx != HMI.getJoystickChannel("Left", "X") ||
+		old_data.lefty != HMI.getJoystickChannel("Left", "Y") ||
+		old_date.rightx != HMI.getJoystickChannel("Right", "X") ||
+		old_data.righty != HMI.getJoystickChannel("Right", "Y"))
 	{
 		actionButtonClick();
-		old_data.x = HMI.getForward();
-		old_data.y = HMI.getTurn();
+		old_data.leftx = HMI.getJoystickChannel("Left", "X");
+		old_data.lefty = HMI.getJoystickChannel("Left", "Y");
+		old_date.rightx = HMI.getJoystickChannel("Right", "X");
+		old_data.righty = HMI.getJoystickChannel("Right", "Y");
 	}
 }, JOY_DELAY);

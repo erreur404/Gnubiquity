@@ -201,7 +201,7 @@ def main(feature):
 
         def move(s):
              perso["x"] -= s*math.sin(math.pi*2*perso["orientation"]/360)*perso["mcoef"]
-             print("speed :"+str(s)+"speedx : "+str(s*math.sin(math.pi*2*perso["orientation"]/360)*perso["mcoef"]))
+             #print("speed :"+str(s)+"speedx : "+str(s*math.sin(math.pi*2*perso["orientation"]/360)*perso["mcoef"]))
              perso["y"] -= s*math.cos(math.pi*2*perso["orientation"]/360)*perso["mcoef"]
 
         def turn(s):

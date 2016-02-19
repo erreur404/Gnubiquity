@@ -61,7 +61,7 @@ def video_feed():
 
 @app.route('/command', methods=['POST'])
 def command():
-    #print(request.form)
+    print(request.form)
     if (request.form["idle"] == 'true'):
         robot.setPositionIdle()
     elif (request.form["rest"] == 'true'):
