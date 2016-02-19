@@ -64,7 +64,7 @@
 						<img class="ButtonB" onclick="HMI._posIdlePressedHandle();" id="idle_button" src="{{ url_for('static', filename='Debout.png') }}" draggable="false">
 						<img class="ButtonB" onclick="HMI._posCuePressedHandle();" id="cue_button" src="{{ url_for('static', filename='SigneMain.png') }}" draggable="false">
 						<img class="ButtonB" onmouseup="toggleRecording(this);" onmousedown="toggleRecording(this);" id="record" src="{{ url_for('static', filename='Micro.png') }}" draggable="false">
-						<!--<img class="Button" id="joystickD" src="{{ url_for('static', filename='Button.png') }}" draggable="false">-->
+						<img class="Button" id="joystickD" src="{{ url_for('static', filename='Button.png') }}" draggable="false">
 					</div>
 				</div>
 				<div id="CadreCentralbis">
@@ -110,8 +110,8 @@
 			var joyG = document.getElementById("joystickG");
 			LEFT_JOY.bind(joyG);
 			
-			//var joyD = document.getElementById("joystickD");
-			//RIGHT_JOY.bind(joyD);
+			var joyD = document.getElementById("joystickD");
+			RIGHT_JOY.bind(joyD);
 			
 		</script>
 	</div>
