@@ -61,15 +61,21 @@ def video_feed():
 
 @app.route('/command', methods=['POST'])
 def command():
-    print(request.form)
+    #print(request.form)
     if (request.form["idle"] == 'true'):
         robot.setPositionIdle()
     elif (request.form["rest"] == 'true'):
         robot.setPositionRest()
     elif (request.form["cue"] == 'true'):
         robot.setPositionCue()
-    robot.moveForward([int(request.form["leftx"]), int(request.form["lefty"])])
-    robot.turn([int(request.form["rightx"]), int(request.form["righty"])])
+    robot.motion(
+        {
+            'leftx':int(request.form["leftx"]),
+            'lefty':int(request.form["lefty"]),
+            'rightx':int(request.form["rightx"]),
+            'righty':int(request.form["righty"])
+        }
+    )
     return "0"
 
 @app.route('/say', methods=['POST'])
@@ -80,7 +86,8 @@ def say():
 
 @app.route('/sound', methods=['POST'])
 def replayVoice():
-    robot.playSound(request.form["data"])
+    print("received sound")
+    robot.playSound(request.form["son"])
     return "0"
 
 if __name__ == '__main__':

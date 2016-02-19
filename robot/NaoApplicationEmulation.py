@@ -196,7 +196,7 @@ def main(feature):
                 "orientation":90.0,
                 "head":0.0,
                 "mcoef":1.0/100,
-                "tcoef":1.0/100
+                "tcoef":1.0/1.0
         }
 
         def move(s):
@@ -223,6 +223,8 @@ def main(feature):
 
         pygame.init()
 
+        sound = pygame.mixer.Channel(0)
+
         while(True):
                 if  feature["stop"]:
                         arret()
@@ -239,6 +241,10 @@ def main(feature):
                 if feature["stand"] :
                         debug("STAND")
                         feature["stand"] = False
+
+                if feature["sound"] != False:
+                        sound.queue(feature["sound"])
+                        feature["sound"] = False
 
                 THE_ONE.set_angle(perso["orientation"]+perso["head"])
                 THE_ONE.set_pos((perso["x"], perso["y"]))

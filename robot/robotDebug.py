@@ -31,6 +31,7 @@ class Robot(object):
                     "arm":False,
                     "sit":False,
                     "stand":False,
+                    "sound":False,
                     "head":{"roll":0, "pitch":0}
             }
         self.threadc = Control(self.controls)
@@ -54,18 +55,17 @@ class Robot(object):
         self.controls["arm"] = True
         print("j attire l attention")
 
-    def moveForward(self, joystick):
-        self.controls["forward"]=[joystick[1], joystick[0]]
-
-    def turn(self, joystick):
-        if joystick[0] > 20:
+    def motion (self, joysticks):
+        self.controls["forward"]=[joysticks['lefty'], joysticks['leftx']]      
+        if joysticks['rightx'] > 20:
             self.controls["rotation"] = 1
-        elif joystick[0] < 20:
+        elif joysticks['rightx'] < -20:
             self.controls["rotation"] = -1
         else:
             self.controls["rotation"] = 0
 
     def playSound(sound):
+        self.controls.sound = sound
         return
 
     def __del__(self):
