@@ -10,6 +10,15 @@ var old_data = {
 	'righty':0
 };
 
+function posImage (event) {
+	var imPos = event.target.getClientRects()[0];
+	// [-100;100] values normalization
+	xim = Math.round(100*(-(event.clientX - imPos.left) + imPos.width/2)/(imPos.width/2));
+	yim = Math.round(100*(-(event.clientY - imPos.top) + imPos.height/2)/(imPos.height/2));
+	//console.log(xim + " -- " + yim);
+	actionButtonClick ();
+}
+
 function Joystick () {
 	this.html = {};
 	this.activation = false;
@@ -65,6 +74,7 @@ function Joystick () {
 
 // class HMI
 function Hmi () {
+<<<<<<< HEAD
 	this.getJoystickChannel = function () {
 		var res = {
 			'leftx':LEFT_JOY.getX(),
@@ -73,6 +83,21 @@ function Hmi () {
 			'righty':RIGHT_JOY.getY()
 		}
 		return res;
+=======
+	
+	this.getHeadX= function(){
+		return xim;
+	};
+	this.getHeadY= function(){
+		return yim;
+	};
+	////////////////////////////
+	this.getForward = function () {
+		return LEFT_JOY.getY();
+	};
+	this.getTurn = function () {
+		return RIGHT_JOY.getX();
+>>>>>>> Position sur image
 	};
 	////////////////////////////
 	this.getMessage = function () {
@@ -117,9 +142,10 @@ function Hmi () {
 }
 
 
-
 function actionButtonClick () {
-	sendData();
+	sendData();	
+	xim=0;
+	yim=0;
 };
 
 function sendData () {
@@ -127,10 +153,16 @@ function sendData () {
 	dataForm.append("idle", HMI.getPosIdle());
 	dataForm.append("rest", HMI.getPosRest());
 	dataForm.append("cue", HMI.getPosCue());
+<<<<<<< HEAD
 	dataForm.append("leftx", HMI.getJoystickChannel().leftx);
 	dataForm.append("lefty", HMI.getJoystickChannel().lefty);
 	dataForm.append("rightx", HMI.getJoystickChannel().rightx);
 	dataForm.append("righty", HMI.getJoystickChannel().righty);
+=======
+	dataForm.append("tourner", HMI.getTurn());
+	dataForm.append("teteHor", HMI.getHeadX());
+	dataForm.append("teteVer", HMI.getHeadY());
+>>>>>>> Position sur image
 	
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.open("POST", "/command", true);
