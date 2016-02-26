@@ -225,7 +225,9 @@ def main(feature):
 
         sound = pygame.mixer.Channel(0)
 
-        while(True):
+        looping = True
+
+        while(looping):
                 if  feature["stop"]:
                         arret()
                 else:
@@ -263,9 +265,9 @@ def main(feature):
                                 XMAX = screen.get_size()[0]
                                 YMAX = screen.get_size()[1]
                                 fullRefresh()
-                       
-                pygame.display.flip()
-                clock.tick(30)
+                if looping:
+                        pygame.display.flip()
+                        clock.tick(30)
                 # blit & flip...
         pygame.quit()
 pygame.quit()

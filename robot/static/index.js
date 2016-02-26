@@ -38,6 +38,9 @@ function Joystick () {
 		this.html.onmousedown = this.activate.bind(this);
 		this.html.onmousemove = this.onMoveHandle.bind(this);
 		this.html.onmouseleave = this.inhibate.bind(this);
+		this.html.ontouchstart = this.activate.bind(this);
+		this.html.ontouchmove = this.onTouchMoveHandle.bind(this);
+		this.html.ontouchend = this.inhibate.bind(this);
 	};
 	
 	this.activate = function () {
@@ -66,9 +69,36 @@ function Joystick () {
 	this.onMoveHandle = function (event) {
 		var joyPos = event.target.getClientRects()[0];
 		// [-100;100] values normalization
-		this.x = Math.round(100*(-(event.clientX - joyPos.left) + joyPos.width/2)/(joyPos.width/2));
-		this.y = Math.round(100*(-(event.clientY - joyPos.top) + joyPos.height/2)/(joyPos.height/2));
+		this.x = Math.max(-100, Math.min(100, Math.round(100*(-(event.clientX - joyPos.left) + joyPos.width/2)/(joyPos.width/2))));
+		this.y = Math.max(-100, Math.min(100, Math.round(100*(-(event.clientY - joyPos.top) + joyPos.height/2)/(joyPos.height/2))));
 		//console.log(this.x + " -- " + this.y);
+	};
+	
+	this.onTouchMoveHandle = function (event) {
+		// to prevent the page to scroll when the user touches the joysticks
+		event.preventDefault();
+		var deb = document.getElementById("DEBUG");
+		//deb.innerText = event.touches.length;
+		//deb.innerText = "Touched !";
+		/*
+		for (var key in object)
+		{
+			res += ";" + key + "=" + object[key];
+		}
+		*/
+		for (var finger=0; finger<event.touches.length; finger++)
+		{
+			var touch = event.touches[finger];
+			// to check if the point of the touch event is the one targetting the joystick bounded to 'this'
+			if (touch.target == this.html) {
+				var joyPos = event.target.getClientRects()[0];
+				// [-100;100] values normalization
+				this.x = Math.max(-100, Math.min(100, Math.round(100*(-(touch.clientX - joyPos.left) + joyPos.width/2)/(joyPos.width/2))));
+				this.y = Math.max(-100, Math.min(100, Math.round(100*(-(touch.clientY - joyPos.top) + joyPos.height/2)/(joyPos.height/2))));
+				//console.log(this.x + " -- " + this.y);
+				//deb.innerText = this.x + " -- " + this.y;
+			}
+		}
 	};
 }
 
