@@ -37,14 +37,12 @@
 	   }
 	  function createDownloadLink() {
 		recorder && recorder.exportWAV(function(blob) {
-		  var url = URL.createObjectURL(blob);
-		  var oReq = new XMLHttpRequest();
-		  oReq.open("POST", "/sound", true);
-		  oReq.onload = function (oEvent) {
-			// Uploaded.
-		  };
-
-		  oReq.send(blob);
+		  var form = new FormData();
+		  form.append('file', blob, "son");
+		  //form.append('title', searchedObj.title);
+		  var xmlhttp = new XMLHttpRequest();
+		  xmlhttp.open("POST", "/sound", true);
+		  xmlhttp.send(form);
 		});
 	  }
 	  window.onload = function init() {

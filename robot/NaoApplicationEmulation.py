@@ -243,7 +243,8 @@ def main(feature):
                         feature["stand"] = False
 
                 if feature["sound"] != False:
-                        sound.queue(feature["sound"])
+                        print(type(feature["sound"]))
+                        sound.queue(pygame.mixer.Sound(buffer = feature["sound"]))
                         feature["sound"] = False
 
                 THE_ONE.set_angle(perso["orientation"]+perso["head"])

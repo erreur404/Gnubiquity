@@ -64,8 +64,8 @@ class Robot(object):
         else:
             self.controls["rotation"] = 0
 
-    def playSound(sound):
-        self.controls.sound = sound
+    def playSound(self, sound):
+        self.controls["sound"] = sound
         return
 
     def __del__(self):

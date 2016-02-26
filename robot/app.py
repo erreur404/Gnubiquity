@@ -3,6 +3,7 @@
 ################################
 from flask import Flask, render_template, Response, request
 import time
+import wave
 
 # emulated camera
 from robotDebug import Robot
@@ -86,8 +87,12 @@ def say():
 
 @app.route('/sound', methods=['POST'])
 def replayVoice():
-    print("received sound")
-    robot.playSound(request.form["son"])
+    s = request.files["file"]
+    res = wave.open(s, 'r')
+    length = res.getnframes()
+    res = res.readframes(length)
+    print(res.count('\0'))
+    robot.playSound(res) #.replace('\0', '')
     return "0"
 
 if __name__ == '__main__':
