@@ -74,7 +74,6 @@ function Joystick () {
 
 // class HMI
 function Hmi () {
-<<<<<<< HEAD
 	this.getJoystickChannel = function () {
 		var res = {
 			'leftx':LEFT_JOY.getX(),
@@ -83,21 +82,13 @@ function Hmi () {
 			'righty':RIGHT_JOY.getY()
 		}
 		return res;
-=======
+	}
 	
 	this.getHeadX= function(){
 		return xim;
 	};
 	this.getHeadY= function(){
 		return yim;
-	};
-	////////////////////////////
-	this.getForward = function () {
-		return LEFT_JOY.getY();
-	};
-	this.getTurn = function () {
-		return RIGHT_JOY.getX();
->>>>>>> Position sur image
 	};
 	////////////////////////////
 	this.getMessage = function () {
@@ -153,16 +144,10 @@ function sendData () {
 	dataForm.append("idle", HMI.getPosIdle());
 	dataForm.append("rest", HMI.getPosRest());
 	dataForm.append("cue", HMI.getPosCue());
-<<<<<<< HEAD
 	dataForm.append("leftx", HMI.getJoystickChannel().leftx);
 	dataForm.append("lefty", HMI.getJoystickChannel().lefty);
 	dataForm.append("rightx", HMI.getJoystickChannel().rightx);
 	dataForm.append("righty", HMI.getJoystickChannel().righty);
-=======
-	dataForm.append("tourner", HMI.getTurn());
-	dataForm.append("teteHor", HMI.getHeadX());
-	dataForm.append("teteVer", HMI.getHeadY());
->>>>>>> Position sur image
 	
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.open("POST", "/command", true);
