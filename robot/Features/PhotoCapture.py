@@ -40,7 +40,7 @@ class PhotoCapture(Features) :
             #pC.setPictureFormat("jpg")
             #pC.takePicture("/home/nao/recordings/cameras/", "image")
 
-"""
+            """
             vD.subscribeCamera("Gnubiquity", 0, resolution,10,30)
             results = vD.getImageRemote("Gnubiquity")
             image = (str)(results[6])
@@ -49,9 +49,9 @@ class PhotoCapture(Features) :
                 print("image data null")
             else:
                 print("image prise")
-"""
+            """
             
-#           tts.say("Photo", "French")
+            #           tts.say("Photo", "French")
 
         except Exception, e:
             print "Could not take a Picture with ALPhotoCapture"
