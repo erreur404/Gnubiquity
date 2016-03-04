@@ -3,7 +3,17 @@ import pygame
 from pygame.locals import *
 from time import sleep
 
-
+import time
+from Features.Move import *
+from Features.Arm import *
+from Features.Stop import *
+from Features.Head import *
+from Features.PhotoCapture import *
+##
+from naoqi import ALProxy
+from naoqi import ALBroker
+from naoqi import ALModule
+##
 
 import math
 from os.path import exists,isdir
@@ -14,7 +24,30 @@ PICT = "watson.jpg" #1000x600
 
 
 def main(feature):
+        'NAOIP_ORANGE: 193.48.125.63'
+        'NAOIP_GRIS: 193.48.125.62'  
+        robotIP= "193.48.125.63";
+        nao = Nao(robotIP,9559)
+        tts = ALProxy("ALTextToSpeech", robotIP, 9559)
+        tts.setLanguage("French")# attention mise en anglais dans les proxy  a verifier 
 
+        'Initialization of the different features'  
+        sT = Stop()
+        mO = Move()
+        aR= Arm()
+        tT= Head()
+        pC = PhotoCapture()
+
+        feature_r={
+                    "forward":False,
+                    "backward":False,
+                    "right":False,
+                    "left":False,
+                    "stop":False,
+                    "arm":False,
+                    "head":[0.0 ,0.0 ],
+                    "photo":False
+                    } 
 
         #------------------------------------------------ CONSTANTS
 
@@ -206,21 +239,39 @@ def main(feature):
              perso["x"] -= s*math.sin(math.pi*2*perso["orientation"]/360)*perso["mcoef"]
              #print("speed :"+str(s)+"speedx : "+str(s*math.sin(math.pi*2*perso["orientation"]/360)*perso["mcoef"]))
              perso["y"] -= s*math.cos(math.pi*2*perso["orientation"]/360)*perso["mcoef"]
-
+             if s > 10:
+                 feature_r["forward"] = True
+                 mO.runOnRobot(nao, feature_r) 
+                 feature_r["forward"] = False
+             elif s < -10:
+                 feature_r["backward"] = True
+                 mO.runOnRobot(nao, feature_r) 
+                 feature_r["backward"] = False
 
         def turn(s):
             perso["orientation"] = (perso["orientation"]+perso["tcoef"]*s*3.6)%360
-
+            if s > 10 :
+                feature_r["left"] = True
+                mO.runOnRobot(nao, feature_r) 
+                feature_r["left"] = False
+            elif s < -10 :
+                feature_r["right"] = True
+                mO.runOnRobot(nao, feature_r)
+                feature_r["right"] = False
 
         
         def arret():
             debug("STOP")
-
+            motionProxy = ALProxy("ALMotion", robotIP, 9559)
+            motionProxy.stopMove()
     
         def bras():
             feature["arm"] = True
             debug("BRAS")
             feature["arm"] = False
+            feature_r["arm"] = True
+            aR.runOnRobot(nao,feature_r)
+            feature_r["arm"] = False
 
         def prisephoto():
             feature_r["photo"] = True
