@@ -3,53 +3,81 @@
 <html>
 
 	<head>
-	<title>Gnubiquity : About Us</title>
+	<title>Gnubiquity Nao</title>
 		<meta charset=utf8>
+		<!-- prevent the user from scaling up or down the webpage -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 		<link rel="stylesheet" href="{{ url_for('static', filename='DesignApp.css') }}" />
+		<script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='recorder.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='recorderWorker.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='recording.js') }}"></script>
+		
+	<!--
+	/////////////////////////////////////////////////////////////
+	-->
+
 	</head>
 	
 	<body>
 	
-		<div id="Upper">
-			<center>
-				<img id="ImgLogo" src="{{ url_for('static', filename='LogoApp2.png') }}">
-				<br/>
-			</center>
+	<div id="EnsembleTot">
+		<div id="hide">
+				<center>	
+				<div id="Upper1">
+					<center>
+						<img id="ImgLogo" src="{{ url_for('static', filename='LogoApp2.png') }}">
+					</center>
+				</div>
+				</center>
 		</div>
-		
-		<div>
-			<a href="/">
-				<div id="LienAppli">Return to the Application</div>
-			</a>
+	</div>	
+	<a href="/" id="LienAppli">
+		Return to the Application
+	</a>
+	<center>
+		<p>
+		<button id="ClickHere" onclick="myMove()">Click Here</button>
+		</p> 
+	</center>	
+
+	<center>
+		<div id ="container">
+			<div id ="animate1">
+			</div>
+			<div id ="animate2">
+			</div>
 		</div>
-		
-		<div id="TG">
+	</center>
+	<script>
+	function myMove() {
+	  var elem1 = document.getElementById("animate1");  
+	  var elem2 = document.getElementById("animate2");
+	  var click = document.getElementById("ClickHere");
+	  var pos1 = 250;
+	  var pos2 = 0;
+	  var id1 = setInterval(frame1, 15);
+	  var id2 = setInterval(frame2, 15);
+	  click.style.display='none';
+	  function frame1() {
+		if (pos1 == 450) {
+		  clearInterval(id1);
+		} else {
+		  pos1++; 
+		  elem1.style.top = pos1 + 'px'; 
+		}
+	  }
+	  function frame2() {
+		if (pos2 == -200) {
+		  clearInterval(id2);
+		} else {
+		  pos2--; 
+		  elem2.style.top = pos2 + 'px'; 
+		}
+	  }
+	}
+	</script>
+
 			
-			<div>
-				Thomas : <div id="Button">
-							<center>
-								<img id="myImage" onclick="changeImage()" src="{{ url_for('static',filename='Button2Click.png') }}" width="80" height="40">
-							</center>	
-						</div>
-				<br/><br/> Partie conception serveur -> Nao.
-			</div>
-			<br/>
-			<div>
-				Ramachandran : <br/><br/> Partie conception serveur -> Nao.
-			</div>
-			<br/>
-			<div>
-				William : <br/><br/> Partie conception serveur Nao, Chef de projet.
-			</div>
-			<br/>
-			<div>
-				Pierre : <br/><br/> Partie conception Nao -> serveur.
-			</div>
-			<br/>
-			<div>
-				Enzo : <br/><br/> Partie conception Appli Web.
-			</div>
-		</div>
-	</body>
-	
+			
 </html>
