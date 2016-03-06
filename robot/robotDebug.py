@@ -1,6 +1,6 @@
 from time import time
-#import NaoApplication as NaoApplication
 import NaoApplication as NaoApplication
+#import NaoApplicationEmulation as NaoApplication
 from threading import Thread
 
 class Control(Thread):
