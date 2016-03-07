@@ -178,6 +178,9 @@ function sendData () {
 	dataForm.append("lefty", HMI.getJoystickChannel().lefty);
 	dataForm.append("rightx", HMI.getJoystickChannel().rightx);
 	dataForm.append("righty", HMI.getJoystickChannel().righty);
+	dataForm.append("tetex", HMI.getHeadX());
+	dataForm.append("tetey", HMI.getHeadY());
+
 	
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.open("POST", "/command", true);
