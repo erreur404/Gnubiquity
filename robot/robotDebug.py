@@ -1,7 +1,9 @@
 from time import time
+#import NaoApplication as NaoApplication
 import NaoApplication as NaoApplication
-#import NaoApplicationEmulation as NaoApplication
 from threading import Thread
+from PIL import Image
+import os
 
 class Control(Thread):
 
@@ -32,16 +34,34 @@ class Robot(object):
                     "sit":False,
                     "stand":False,
                     "sound":False,
+                    "photo":True,
                     "head":{"roll":0, "pitch":0}
             }
         self.threadc = Control(self.controls)
         # Lancement du thread
         self.threadc.start()
-        self.frames = [open('_robotDebug/'+str(f) + '.jpg', 'rb').read() for f in range(1,29)]
+        self.imgBuffer = open("watson.jpg", 'rb').read()
+        #self.frames = [open('_robotDebug/'+str(f) + '.jpg', 'rb').read() for f in range(1,29)]
 
     def get_frame(self):
         #time.sleep(0.5)
-        return self.frames[int(time()) % len(self.frames)]
+        
+        if (type(self.controls["photo"]) != type(True) and
+            type(self.controls["photo"]) != type(1)):
+
+            photo = self.controls["photo"]
+            imageWidth = photo[0]
+            imageHeight = photo[1]
+            array = photo[6]
+            image = Image.frombytes("RGB", (imageWidth, imageHeight), array)
+            image.save("camImage.png", "PNG")
+            
+            #print(EXTENSION)
+            f = open('camImage.png', 'rb')
+            self.imgBuffer = f.read()
+            f.close()
+            self.controls["photo"] = True
+        return self.imgBuffer
 
     def setPositionIdle(self):
         self.controls["stand"] = True
@@ -63,17 +83,6 @@ class Robot(object):
             self.controls["rotation"] = -1
         else:
             self.controls["rotation"] = 0
-        if (joysticks['lefty'] == 0 and
-            joysticks['leftx'] == 0 and
-            joysticks['rightx'] == 0):
-            self.moving = True
-        if (joysticks['lefty'] == 0 and
-            joysticks['leftx'] == 0 and
-            joysticks['rightx'] == 0 and
-            self.moving):
-            print("stop debbug")
-            self.moving = False
-            self.controls["stop"] = True
 
     def playSound(self, sound):
         self.controls["sound"] = sound

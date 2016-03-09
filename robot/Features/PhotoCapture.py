@@ -60,7 +60,7 @@ class PhotoCapture(Features) :
             t0= time.time()
             image = vD.getImageRemote(nameId)
             t1 = time.time()
-            
+  
             print "temps de getImageRemote", t1-t0
             vD.unsubscribe(nameId)
             imageWidth = image[0]
@@ -68,20 +68,19 @@ class PhotoCapture(Features) :
             array = image[6]
             
             t2 = time.time()
-            feature["photo"] = image
             t3 = time.time()
             print "delai de transmission de l'image", t3-t2
 
             
             
-            im = Image.fromstring("RGB", (imageWidth, imageHeight), array)
-            feature["photo"] = im
+            #im = Image.frombytes("RGB", (imageWidth, imageHeight), array)
+            feature["photo"] = image
             t5 = time.time()
-            print "temps de création de l'image RGB : ",t5-t3
-            im.save("camImage.png", "PNG")
+            print "temps de creation de l'image RGB : ",t5-t3
+            #im.save("camImage.png", "PNG")
             t4 = time.time()
             print "temps de sauvegarde de l'image", t4-t5
-            im.show()
+            #im.show()
             t6 = time.time()
             print "temps d'affichage de l'image", t6-t4
             print "temps total de prise et affichage d'une photo", t6-t0
