@@ -35,7 +35,7 @@ class Robot(object):
                     "stand":False,
                     "sound":False,
                     "photo":True,
-                    "head":{"roll":0, "pitch":0}
+                    "head":{"yaw":0, "pitch":0}
             }
         self.threadc = Control(self.controls)
         # Lancement du thread
@@ -83,7 +83,12 @@ class Robot(object):
             self.controls["rotation"] = -1
         else:
             self.controls["rotation"] = 0
-
+            
+    def cameraMotion (self, orientation) :
+        print("je veux bouger la tete")
+        self.controls["head"]["yaw"]=orientation['yaw']
+        self.controls["head"]["pitch"]=orientation['pitch']
+        
     def playSound(self, sound):
         self.controls["sound"] = sound
         return

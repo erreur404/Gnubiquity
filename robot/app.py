@@ -77,6 +77,12 @@ def command():
             'righty':int(request.form["righty"])
         }
     )
+    robot.cameraMotion(
+        {
+            'yaw':int(request.form["yaw"]),
+            'pitch':int(request.form["pitch"])
+        }
+    )
     return "0"
 
 @app.route('/say', methods=['POST'])
