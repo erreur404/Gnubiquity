@@ -16,11 +16,28 @@
 	<!--
 	/////////////////////////////////////////////////////////////
 	-->
-
+		<link rel="apple-touch-icon" href="{{ url_for('static', filename='Favicon/apple-touch-icon-57x57.png',sizes='57x57') }}"/>
+		<link rel="apple-touch-icon" href="{{ url_for('static', filename='Favicon/apple-touch-icon-60x60.png',sizes='60x60') }}"/>
+		<link rel="apple-touch-icon" href="{{ url_for('static', filename='Favicon/apple-touch-icon-72x72.png',sizes='72x72') }}"/>
+		<link rel="apple-touch-icon" href="{{ url_for('static', filename='Favicon/apple-touch-icon-76x76.png',sizes='76x76') }}"/>
+		<link rel="apple-touch-icon" href="{{ url_for('static', filename='Favicon/apple-touch-icon-114x114.png',sizes='114x114') }}"/>
+		<link rel="apple-touch-icon" href="{{ url_for('static', filename='Favicon/apple-touch-icon-120x120.png',sizes='120x120') }}"/>
+		<link rel="apple-touch-icon" href="{{ url_for('static', filename='Favicon/apple-touch-icon-144x144.png',sizes='144x144') }}"/>
+		<link rel="apple-touch-icon" href="{{ url_for('static', filename='Favicon/apple-touch-icon-152x152.png',sizes='152x152') }}"/>
+		<link rel="apple-touch-icon" href="{{ url_for('static', filename='Favicon/apple-touch-icon-180x180.png',sizes='180x180') }}"/>
+		<link rel="icon" type="image/png" href="{{ url_for('static', filename='Favicon/favicon-32x32.png') }}"/>
+		<link rel="icon" type="image/png" href="{{ url_for('static', filename='Favicon/favicon-194x194.png', sizes='194x194') }}"/>
+		<link rel="icon" type="image/png" href="{{ url_for('static', filename='Favicon/favicon-96x96.png', sizes='96x96') }}"/>
+		<link rel="icon" type="image/png" href="{{ url_for('static', filename='Favicon/android-chrome-192x192.png', sizes='192x192') }}"/>
+		<link rel="icon" type="image/png" href="{{ url_for('static', filename='Favicon/favicon-16x16.png', sizes='16x16') }}"/>
+		<link rel="manifest" href="/manifest.json">
+		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+		<meta name="msapplication-TileColor" content="#da532c">
+		<meta name="msapplication-TileImage" content="/mstile-144x144.png">
+		<meta name="theme-color" content="#ffffff">
 	</head>
 	
 	<body>
-	
 	<div id="EnsembleTot">
 		<div id="hide">
 				<center>	
@@ -32,20 +49,28 @@
 				</center>
 		</div>
 	</div>	
-	<a href="/" id="LienAppli">
-		Return to the Application
-	</a>
+	<hr style="height:0.1em;border-width:0;color:gray;background-color:black;box-shadow: -1px 2px 5px 1px black;">
+	<div id="Onglets">
+		<a href="/" id="LienAppli">
+			Return to the Application
+		</a>
+		<a href="{{ url_for('description') }}" id="LienDes">
+			Description :
+		</a>
+	</div>
 	<center>
-		<p>
-		<button id="ClickHere" onclick="myMove()">Click Here</button>
-		</p> 
+			<p>
+			<button id="ClickHere" onclick="myMove()">Click Here</button>
+			</p> 
 	</center>	
 
 	<center>
 		<div id ="container">
 			<div id ="animate1">
+			    
 			</div>
 			<div id ="animate2">
+				
 			</div>
 		</div>
 	</center>
@@ -56,11 +81,11 @@
 	  var click = document.getElementById("ClickHere");
 	  var pos1 = 250;
 	  var pos2 = 0;
-	  var id1 = setInterval(frame1, 15);
-	  var id2 = setInterval(frame2, 15);
+	  var id1 = setInterval(frame1, 5);
+	  var id2 = setInterval(frame2, 5);
 	  click.style.display='none';
 	  function frame1() {
-		if (pos1 == 450) {
+		if (pos1 == 550) {
 		  clearInterval(id1);
 		} else {
 		  pos1++; 
@@ -68,7 +93,7 @@
 		}
 	  }
 	  function frame2() {
-		if (pos2 == -200) {
+		if (pos2 == -300) {
 		  clearInterval(id2);
 		} else {
 		  pos2--; 

@@ -14,7 +14,7 @@ function posImage (event) {
 	var imPos = event.target.getClientRects()[0];
 	// [-100;100] values normalization
 	xim = Math.round(100*(-(event.clientX - imPos.left) + imPos.width/2)/(imPos.width/2));
-	yim = Math.round(100*(-(event.clientY - imPos.top) + imPos.height/2)/(imPos.height/2));
+	yim = Math.round(-100*(-(event.clientY - imPos.top) + imPos.height/2)/(imPos.height/2));
 	//console.log(xim + " -- " + yim);
 	actionButtonClick ();
 }
@@ -178,8 +178,8 @@ function sendData () {
 	dataForm.append("lefty", HMI.getJoystickChannel().lefty);
 	dataForm.append("rightx", HMI.getJoystickChannel().rightx);
 	dataForm.append("righty", HMI.getJoystickChannel().righty);
-	dataForm.append("tetex", HMI.getHeadX());
-	dataForm.append("tetey", HMI.getHeadY());
+	dataForm.append("yaw", HMI.getHeadX());
+	dataForm.append("pitch", HMI.getHeadY());
 
 	
 	var xmlhttp = new XMLHttpRequest();

@@ -38,6 +38,10 @@ def index():
 def about():
     """Video streaming home page."""
     return render_template('AboutUs.html')
+	
+@app.route('/description')
+def description():
+	return render_template('Description.html')
 
 
 def gen(camera):
