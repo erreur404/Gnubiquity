@@ -38,3 +38,4 @@ pip install Pillow
 
 
 echo installation complete
+pause
