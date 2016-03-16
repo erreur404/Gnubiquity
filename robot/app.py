@@ -89,8 +89,8 @@ def command():
 
 @app.route('/say', methods=['POST'])
 def say():
-    robot.sayText(request.form["Say"])
-    return str(request.form["Say"])
+    robot.sayText(request.form["message"])
+    return str(request.form["message"])
 
 @app.route('/sound', methods=['POST'])
 def replayVoice():
