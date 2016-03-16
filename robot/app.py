@@ -38,6 +38,10 @@ def index():
 def about():
     """Video streaming home page."""
     return render_template('AboutUs.html')
+	
+@app.route('/description')
+def description():
+	return render_template('Description.html')
 
 
 def gen(camera):
@@ -75,12 +79,6 @@ def command():
             'lefty':int(request.form["lefty"]),
             'rightx':int(request.form["rightx"]),
             'righty':int(request.form["righty"])
-        }
-    )
-    robot.cameraMotion(
-        {
-            'yaw':int(request.form["yaw"]),
-            'pitch':int(request.form["pitch"])
         }
     )
     return "0"
