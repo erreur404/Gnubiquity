@@ -238,6 +238,8 @@
 	}
 	#container {
 	  width: 90%;
+	  max-width:60em;
+	  min-width:55em;
 	  height: 30em;
 	  position: relative;
 	  background-image:url('Description.png');
