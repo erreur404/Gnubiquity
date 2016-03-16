@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-
 <html>
 
 	<head>
@@ -13,6 +11,9 @@
 		<script type="text/javascript" src="{{ url_for('static', filename='recorderWorker.js') }}"></script>
 		<script type="text/javascript" src="{{ url_for('static', filename='recording.js') }}"></script>
 		
+	<!--
+	/////////////////////////////////////////////////////////////
+	-->
 		<link rel="apple-touch-icon" href="{{ url_for('static', filename='Favicon/apple-touch-icon-57x57.png',sizes='57x57') }}"/>
 		<link rel="apple-touch-icon" href="{{ url_for('static', filename='Favicon/apple-touch-icon-60x60.png',sizes='60x60') }}"/>
 		<link rel="apple-touch-icon" href="{{ url_for('static', filename='Favicon/apple-touch-icon-72x72.png',sizes='72x72') }}"/>
@@ -32,7 +33,6 @@
 		<meta name="msapplication-TileColor" content="#da532c">
 		<meta name="msapplication-TileImage" content="/mstile-144x144.png">
 		<meta name="theme-color" content="#ffffff">
-	
 	</head>
 	
 	<body>
@@ -46,93 +46,23 @@
 				</div>
 				</center>
 		</div>
-	</div>		
-		
-			<center>	
+	</div>	
+	<hr style="height:0.1em;border-width:0;color:gray;background-color:black;box-shadow: -1px 2px 5px 1px black;">
+	<div id="Onglets">
+		<a href="/" id="LienAppli2">
+			Return to the Application
+		</a>
+	</div>
+	<div id="FondDescription">
+		<div id="TextD">
 			
-				<div id="Button">
-					<center>
-					<img id="myImage" onclick="changeImage()" src="{{ url_for('static',filename='Button2Click.png') }}" width="80" height="40">
-					</center>	
-				</div>
-	
-			</center>
-		
-			<div id="Connexion"> 
-				<ul>
-					<a href="{{ url_for('about') }}"><li id="AboutUs"> About us </li></a><!--
-					--><a href="/"><li> Reload </li></a><!--
-					--><a href="http://www.w3schools.com"><li  id="Deconnexion"> Disconnect </li></a>
-				</ul> 
-			</div>
-			<div id="Main">
-				<div id="CadreCentral">
-				
-					<center>
-					
-					<div id = "output">		
-						<img src="{{ url_for('video_feed') }}">
-					</div>
-					
-					</center>
-					
-					<div id="Buttons">
-						<img class="Button" id="joystickG" src="{{ url_for('static', filename='Button.png') }}" draggable="false">
-						<img class="ButtonB" onclick="HMI._posRestPressedHandle();" id="rest_button" src="{{ url_for('static', filename='Assis.png') }}" draggable="false">
-						<img class="ButtonB" onclick="HMI._posIdlePressedHandle();" id="idle_button" src="{{ url_for('static', filename='Debout.png') }}" draggable="false">
-						<img class="ButtonB" onclick="HMI._posCuePressedHandle();" id="cue_button" src="{{ url_for('static', filename='SigneMain.png') }}" draggable="false">
-						<img class="ButtonB" onmouseup="toggleRecording(this);" onmousedown="toggleRecording(this);" id="record" src="{{ url_for('static', filename='Micro.png') }}" draggable="false">
-						<img class="Button" id="joystickD" src="{{ url_for('static', filename='Button.png') }}" draggable="false">
-					</div>
-				</div>
-				<div id="CadreCentralbis">
-					<div id="form">
-						<form action="/say" method="POST">
-							Write here what you want to say : <input id="text" type="text" name="Say"><br>
-						<br/>
-						<input id="submit" type="submit" value="Submit"><br/><br/>
-						</form>
-					</div>
-					<p id="CoordonneesG"></p>
-					<p id="CoordonneesD"></p>
-				</div>
-			</div>
-		
-		
-		<div id="Lower">
-		
-			<marquee direction="left"> 
-				All Rights Reserved. Engineering Students concerned : Le Borgne, Attié, Suntharasarma, Fath, Boully.
-			</marquee>
+				Nous sommes 5 étudiants élèves ingénieurs qui avons eu en tant que projet de faire 
+				de la téléprésence robotique.<br/> Cet APP RS ( Apprentissage Par Projet en Robotique de Service ) 
+				fut mené pendant nos 3 années de notre cycle ingénieur. Au cours de ce projet, nous avons établi les différentes possibilités 
+				que nous pouvions exploiter non seulement avec Nao mais avec un robot quelconque. 
+				Cet aspect d'adaptabilité a toujours été un point clé dans notre cahier des charges.
+				<br/><br/>Tous droits réservés, Polytech Annecy-Chambery 
 		
 		</div>
-	
-		<script>
-			function changeImage() {
-				var image = document.getElementById('myImage');
-				var body = document.getElementById('EnsembleTot');
-					if (image.src.match("Button2Click")) {
-					image.src = "{{ url_for('static',filename='Button1click.png') }}";
-					body.style.display = 'none';
-					} else {
-						image.src = "{{ url_for('static', filename='Button2Click.png') }}";
-						body.style.display = 'block';
-							}
-						}
-					
-						
-		</script>
-		
-		<script type="text/javascript">
-	
-			var joyG = document.getElementById("joystickG");
-			LEFT_JOY.bind(joyG);
-			
-			var joyD = document.getElementById("joystickD");
-			RIGHT_JOY.bind(joyD);
-			
-		</script>
 	</div>
-	</body>
-
-</html>
+	<hr style="height:0.1em;border-width:0;color:gray;background-color:black;box-shadow: -1px 2px 5px 1px black;">
