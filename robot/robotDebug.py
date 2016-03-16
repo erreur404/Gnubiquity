@@ -35,6 +35,7 @@ class Robot(object):
                     "stand":False,
                     "sound":False,
                     "photo":True,
+                    "text":"",
                     "head":{"yaw":0, "pitch":0}
             }
         self.threadc = Control(self.controls)
@@ -92,6 +93,9 @@ class Robot(object):
     def playSound(self, sound):
         self.controls["sound"] = sound
         return
+
+    def sayText(self, text):
+        self.controls["text"] = text
 
     def __del__(self):
         pass

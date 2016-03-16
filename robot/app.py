@@ -81,12 +81,15 @@ def command():
             'righty':int(request.form["righty"])
         }
     )
+    robot.cameraMotion({
+        "yaw":request.form["yaw"],
+        "pitch":request.form["pitch"]
+    })
     return "0"
 
 @app.route('/say', methods=['POST'])
 def say():
-    #return "received !"
-    #return str(request.body)
+    robot.sayText(request.form["Say"])
     return str(request.form["Say"])
 
 @app.route('/sound', methods=['POST'])
