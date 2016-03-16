@@ -33,6 +33,8 @@ if not exist C:\python27\scripts\pip.exe (
 echo installing flask
 cd scripts
 pip install flask
+echo installing Python Image Library (Pillow)
+pip install Pillow
 
 
 echo installation complete
