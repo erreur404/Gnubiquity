@@ -179,7 +179,7 @@
 		border-color:#66CCFF;
 		box-shadow: -1px 2px 5px 1px black;
 	}
-	input{
+	input, button{
 		border-style:solid;
 		border-width:1px;
 		border-bottom-left-radius:4px;
