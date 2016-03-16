@@ -82,8 +82,8 @@ def command():
         }
     )
     robot.cameraMotion({
-        "yaw":request.form["yaw"],
-        "pitch":request.form["pitch"]
+        'yaw':int(request.form["yaw"]),
+        'pitch':int(request.form["pitch"])
     })
     return "0"
 
