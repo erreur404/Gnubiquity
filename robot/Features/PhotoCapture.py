@@ -8,7 +8,7 @@ import almath as m # python's wrapping of almath
 import almath
 import argparse
 import vision_definitions
-import Image
+from PIL import Image
 
 from naoqi import ALProxy
 from NaoApplication import *
