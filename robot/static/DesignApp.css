@@ -219,6 +219,7 @@
 	}
 	#output{
 		max-height:26em;
+		min-height:20%;
 		width:auto;
 		border-width:1px;
 		padding-top:0.5em;
@@ -231,6 +232,7 @@
 	}
 	#output > img{
 		max-height:26em;
+		min-height:20%;
 		width:auto;
 		border-radius:0.5em;
 	}
@@ -254,6 +256,7 @@
 	  width: 100%;
 	  top:15em;
 	  height: 15em;
+	  color:#66CCFF;
 	  position: absolute;
 	  background-image: url('BackGroundAUP1.png');
 	  background-size:100%;	
@@ -269,6 +272,7 @@
 	#animate2 {
 	  width: 100%;
 	  height: 15em;
+	  color:#66CCFF;
 	  position: absolute;
 	  background-image: url('BackGroundAUP2.png');
 	  background-size:100%;	
@@ -291,6 +295,70 @@
 	}
 	#LienAppli{
 		top:-30px;
+	}
+	#LogoAboutUs{
+		width:16em;
+		height:auto;
+	}
+	#Onglets{
+		display:inline-block;
+		padding-left:5%;
+		padding-right:5%;
+		background-color:black;
+		color:black;
+		height:0px;
+	}
+	#LienAppli,#LienAppli2{
+		background-image:url('Metal.png');
+		background-size:100%;
+		padding:0.5em;
+		margin-left:0px;
+		color:#66CCFF;
+		height:0px;
+		border-bottom-left-radius:1.5em;
+		border-bottom-right-radius:1.5em;
+		text-decoration:none;
+		box-shadow: -1px 2px 5px 1px black;
+		-webkit-transition: color 1s ease-in-out;
+	}
+	#LienAppli:hover,#LienAppli2:hover{
+		color:black;
+		border-bottom-left-radius:1.5em;
+		border-bottom-right-radius:1.5em;
+		-webkit-transition: color 1s ease-out;
+	}
+	#LienDes{
+		background-image:url('Metal.png');
+		background-size:150%;
+		padding:0.5em;
+		margin-right:5%;
+		color:#66CCFF;
+		height:0px;
+		border-bottom-left-radius:1.5em;
+		border-bottom-right-radius:1.5em;
+		text-decoration:none;
+		box-shadow: -1px 2px 5px 1px black;
+		-webkit-transition: color 1s ease-in-out;
+	}
+	#LienDes:hover{
+		color:black;
+		border-bottom-left-radius:1.5em;
+		border-bottom-right-radius:1.5em;
+		-webkit-transition: color 1s ease-out;
+	}
+	#TextD{
+		padding:2%;
+		border-radius:1em;
+		background-image:url('FontDescription.jpg');
+		height:32.2em;
+		margin:0.5%;
+		text-align:justify;
+		box-shadow: -1px 2px 5px 1px black;
+		color:#66CCFF;
+	}
+	#FondDescription{
+		height:39em;
+		padding:5%;
 	}
 /************************************************************************************
 */
