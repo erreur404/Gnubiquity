@@ -1,4 +1,4 @@
-var HMI = new Hmi();
+﻿var HMI = new Hmi();
 var LEFT_JOY = new Joystick();
 var RIGHT_JOY = new Joystick();
 var JOY_DELAY = 300; // every 300ms the joystick values are sent (at least)
