@@ -1,5 +1,4 @@
 from time import time
-#import NaoApplication as NaoApplication
 import NaoApplication as NaoApplication
 from threading import Thread
 from PIL import Image
@@ -95,7 +94,11 @@ class Robot(object):
             print("stop debbug")
             self.moving = False
             self.controls["stop"] = True
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> Final version (essai)
             
     def cameraMotion (self, orientation) :
         print("je veux bouger la tete")
