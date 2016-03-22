@@ -84,6 +84,18 @@ class Robot(object):
             self.controls["rotation"] = -1
         else:
             self.controls["rotation"] = 0
+        if (joysticks['lefty'] == 0 and
+            joysticks['leftx'] == 0 and
+            joysticks['rightx'] == 0):
+            self.moving = True
+        if (joysticks['lefty'] == 0 and
+            joysticks['leftx'] == 0 and
+            joysticks['rightx'] == 0 and
+            self.moving):
+            print("stop debbug")
+            self.moving = False
+            self.controls["stop"] = True
+
             
     def cameraMotion (self, orientation) :
         print("je veux bouger la tete")
