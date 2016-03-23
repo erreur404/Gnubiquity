@@ -22,7 +22,8 @@ var progress = {
             "position prêt":100,
             "attirer l'attention":100,
             "enregistrer voix":100,
-            "envoyer texte":100
+            "envoyer texte":100,
+            "lire le son de nao":0
         },
         "Nao":{
             "déplacement":{
