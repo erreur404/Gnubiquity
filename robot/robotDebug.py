@@ -40,7 +40,7 @@ class Robot(object):
         self.threadc = Control(self.controls)
         # Lancement du thread
         self.threadc.start()
-        self.imgBuffer = open("watson.jpg", 'rb').read()
+        self.imgBuffer = open("placeholder.jpg", 'rb').read()
         #self.frames = [open('_robotDebug/'+str(f) + '.jpg', 'rb').read() for f in range(1,29)]
 
     def get_frame(self):
@@ -62,6 +62,9 @@ class Robot(object):
             f.close()
             self.controls["photo"] = True
         return self.imgBuffer
+
+    def get_audio(self):
+        open("_robotDebugSound/part1.wav", 'rb').read()
 
     def setPositionIdle(self):
         self.controls["stand"] = True

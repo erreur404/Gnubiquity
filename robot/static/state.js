@@ -23,7 +23,10 @@ var progress = {
             "attirer l'attention":100,
             "enregistrer voix":100,
             "envoyer texte":100,
-            "lire le son de nao":0
+            "lire le son de nao":{
+                "lire un mp3":100,
+                "envoyer un mp3 multipart":0
+            }
         },
         "Nao":{
             "déplacement":{
@@ -40,7 +43,8 @@ var progress = {
                 "support des définitions":100,
                 "selection automatique définition":80
             },
-            "enregistrement son":0
+            "enregistrement son":0,
+            "convertir wav en mp3":0
         }
     }
 }

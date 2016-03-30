@@ -57,12 +57,23 @@ def gen(camera):
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
-
 @app.route('/video_feed')
 def video_feed():
     """Video streaming route. Put this in the src attribute of an img tag."""
     return Response(gen(robot),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@app.route("/audio_feed")
+def audio_feed():
+    def generate(audio_source):
+        sleeptime = 0
+        while True:
+            time.sleep(sleeptime)
+            mp3 = audio_source.get_audio()
+            sleeptime = mp3.getDuration()
+            open("_robotDebugSound/Track03.mp3", 'rb').read()
+            yield mp3
+    return Response(generate(robot), mimetype="audio/mpeg")
 
 @app.route('/command', methods=['POST'])
 def command():
