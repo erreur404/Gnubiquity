@@ -1,12 +1,12 @@
 var progress = {
     "state.js":100,
     "soutenance":{
-        "demo":40,
+        "demo":50,
         "texte/structure":37,
         "diapo":0
     },
     "video":{
-        "capture":5,
+        "capture":25,
         "montage":0,
         "post-prod":0
     },
@@ -45,6 +45,10 @@ var progress = {
             },
             "enregistrement son":0,
             "convertir wav en mp3":0
+        }
+        "Pi":{
+            "video":100,
+            "mouvement":0
         }
     }
 }
