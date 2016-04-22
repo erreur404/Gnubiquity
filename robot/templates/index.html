@@ -9,10 +9,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 		<link rel="stylesheet" href="{{ url_for('static', filename='DesignApp.css') }}" />
 		<script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>
+        <!--
 		<script type="text/javascript" src="{{ url_for('static', filename='recorder.js') }}"></script>
 		<script type="text/javascript" src="{{ url_for('static', filename='recorderWorker.js') }}"></script>
 		<script type="text/javascript" src="{{ url_for('static', filename='recording.js') }}"></script>
-		
+		-->
 		<link rel="apple-touch-icon" href="{{ url_for('static', filename='Favicon/apple-touch-icon-57x57.png',sizes='57x57') }}"/>
 		<link rel="apple-touch-icon" href="{{ url_for('static', filename='Favicon/apple-touch-icon-60x60.png',sizes='60x60') }}"/>
 		<link rel="apple-touch-icon" href="{{ url_for('static', filename='Favicon/apple-touch-icon-72x72.png',sizes='72x72') }}"/>
@@ -66,10 +67,11 @@
 				</ul> 
 			</div>
 			<div id="Main">
+                <!-- removed audio
                 <audio controls autoplay>
                     <source src="/audio_feed" type="audio/mpeg">
                     Your browser does not support this audio format.
-                </audio>
+                </audio> -->
 				<div id="CadreCentral">
 				
 					<center>
