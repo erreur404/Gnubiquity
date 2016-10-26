@@ -5,9 +5,7 @@ from flask import Flask, render_template, Response, request
 import time
 import wave
 
-# emulated camera
 from robotDebug import Robot
-
 
 #*****************************#
 #     CONSTANTS & CONFIG      #

@@ -50,7 +50,6 @@ class PhotoCapture(Features) :
             fps=30
 
             nameId = vD.subscribe("python_GVM", resolution , colorSpace, fps)
-            print "photo"
             
             image = vD.getImageRemote(nameId)
             

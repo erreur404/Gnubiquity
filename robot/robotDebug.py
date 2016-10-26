@@ -19,8 +19,6 @@ class Control(Thread):
 
 
 class Robot(object):
-    """An emulated camera implementation that streams a repeated sequence of
-    files 1.jpg, 2.jpg and 3.jpg at a rate of one frame per second."""
 
     def __init__(self):
         self.moving = True
@@ -41,10 +39,8 @@ class Robot(object):
         # Lancement du thread
         self.threadc.start()
         self.imgBuffer = open("placeholder.jpg", 'rb').read()
-        #self.frames = [open('_robotDebug/'+str(f) + '.jpg', 'rb').read() for f in range(1,29)]
 
     def get_frame(self):
-        #time.sleep(0.5)
         
         if (type(self.controls["photo"]) != type(True) and
             type(self.controls["photo"]) != type(1)):
@@ -56,7 +52,6 @@ class Robot(object):
             image = Image.frombytes("RGB", (imageWidth, imageHeight), array)
             image.save("camImage.png", "PNG")
             
-            #print(EXTENSION)
             f = open('camImage.png', 'rb')
             self.imgBuffer = f.read()
             f.close()
@@ -68,15 +63,12 @@ class Robot(object):
 
     def setPositionIdle(self):
         self.controls["stand"] = True
-        print("je suis pret a bouger !")
 
     def setPositionRest(self):
         self.controls["sit"] = True
-        print("je vais me reposer :)")
 
     def setPositionCue(self):
         self.controls["arm"] = True
-        print("j attire l attention")
 
     def motion (self, joysticks):
         self.controls["forward"]=[joysticks['lefty'], joysticks['leftx']]      
@@ -94,12 +86,10 @@ class Robot(object):
             joysticks['leftx'] == 0 and
             joysticks['rightx'] == 0 and
             self.moving):
-            print("stop debbug")
             self.moving = False
             self.controls["stop"] = True
             
     def cameraMotion (self, orientation) :
-        print("je veux bouger la tete")
         self.controls["head"]["yaw"]=orientation['yaw']
         self.controls["head"]["pitch"]=orientation['pitch']
         
@@ -112,4 +102,3 @@ class Robot(object):
 
     def __del__(self):
         pass
-        #self.threadc.join()
