@@ -11,11 +11,10 @@ if not exist C:\python27 (
 	echo python2.7 already installed
 )
 
-
-cp get-pip.py C:\python27
+copy get-pip.py C:\python27
 echo copying naoqi files to python directory
 if not exist C:\python27\lib\site-packages\naoqi.py (
-	cp --recursive --force naoQiFramework/* C:\python27\lib\site-packages
+	xcopy naoQiFramework\* C:\python27\lib\site-packages /S
 	echo Naoqi packages installed
 ) else (
 	echo Naoqi already installed
